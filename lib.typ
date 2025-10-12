@@ -20,6 +20,10 @@
                 Department of Computer Science],
         )
     ),
+    // The name of your institution.
+    institution: none,
+    // The path to logo of your institution.
+    logo: none,
     // Date that will be displayed on cover page.
     // The value needs to be of the 'datetime' type.
     // More info: https://typst.app/docs/reference/foundations/datetime/
@@ -48,6 +52,8 @@
         major,
         department,
         supervisors,
+        institution,
+        logo,
         date,
         date-format,
     )
