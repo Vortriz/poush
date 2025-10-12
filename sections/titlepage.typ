@@ -5,31 +5,33 @@
     major,
     department,
     supervisors,
+    institution,
+    logo,
     date,
     date-format,
 ) = {
     set page(margin: (top: 3cm, bottom: 3cm, inside: 3cm, outside: 3cm))
     set align(center)
-    set par(leading: 1.5em)
+    show smallcaps: it => text(size: 13pt, it)
 
-    v(0.75fr)
+    v(0.5fr)
 
     par(text(size: 14.4pt, tracking: 0.4pt, upper(title)))
 
     v(1fr)
 
     (
-        par[
+        [
             A thesis submitted to attain the degree of \
-            #text(size: 13pt, (smallcaps(degree))) \
+            #smallcaps(degree) \
         ]
             + if major != none [
                 with a major in \
-                #text(size: 13pt, (smallcaps(major))) \
+                #smallcaps(major) \
             ]
             + if department != none [
                 at the \
-                #text(size: 13pt, (smallcaps(department))) \
+                #smallcaps(department) \
             ]
     )
 
@@ -37,22 +39,31 @@
 
     par[
         presented by \
-        #text(size: 13pt, (smallcaps(author)))
+        #smallcaps(author) \
     ]
-
-    v(1fr)
-
-    let supervisors-names = for supervisor in supervisors [
-        #supervisor.name \
-    ]
-
-    par[accepted on the recommendation of]
-
-    par(leading: 0.65em, supervisors-names)
-
-    v(0.75fr)
 
     if date != none {
         par(date.display(date-format))
+    }
+
+    v(1fr)
+
+    par(
+        [
+            accepted on the recommendation of \
+        ]
+            + for supervisor in supervisors [
+                #smallcaps(supervisor.name) \
+            ],
+    )
+
+    v(1fr)
+
+    if logo != none {
+        image(logo, height: 5cm)
+    }
+
+    if institution != none {
+        par(smallcaps(institution))
     }
 }
