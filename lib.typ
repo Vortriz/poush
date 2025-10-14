@@ -44,7 +44,7 @@
     })
 
     set page(paper: paper-size)
-    set text(size: 10.5pt, number-type: "old-style")
+    set text(size: 11pt, number-type: "old-style")
 
     titlepage(
         title,
