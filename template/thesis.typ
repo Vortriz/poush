@@ -1,4 +1,6 @@
-#import "../lib.typ": thesis
+#import "../lib.typ": *
+
+#import "@preview/glossy:0.8.0": *
 
 #show: thesis.with(
     title: [Some Awesome Title],
@@ -24,4 +26,17 @@
     date: datetime(year: 2025, month: 6, day: 1),
     date-format: "[month repr:long] [day padding:zero], [year repr:full]",
     paper-size: "us-letter",
+)
+
+#show: init-glossary.with(yaml("chapters/glossary.yaml"))
+
+@aa is a great.
+
+@aar is also great.
+
+#pagebreak()
+
+#glossary(
+    title: "Acronyms & Abbreviations",
+    theme: acr-theme,
 )

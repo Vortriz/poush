@@ -1,4 +1,5 @@
 #import "sections/titlepage.typ": titlepage
+#import "sections/glossary.typ": acr-theme
 
 #let thesis(
     // The title for your work.

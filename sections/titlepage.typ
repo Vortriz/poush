@@ -1,3 +1,5 @@
+#import "../utils/text.typ": caps
+
 #let titlepage(
     title,
     author,
@@ -16,7 +18,7 @@
 
     v(0.5fr)
 
-    par(text(size: 14.4pt, tracking: 0.4pt, upper(title)))
+    par(leading: 1.5em, text(size: 14.4pt, caps(title)))
 
     v(1fr)
 
