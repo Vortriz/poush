@@ -1,0 +1,41 @@
+- [ ] backmatter
+    - [ ] backmatter
+    - [ ] references
+    - [x] acronyms
+    - [ ] acknowledgements
+- [ ] frontmatter
+    - [ ] frontmatter
+    - [x] titlepage
+    - [ ] colophon
+    - [ ] summary
+- [ ] preamble
+    - [x] acronyms
+    - [x] ~algorithms~ user can import package if needed
+    - [ ] biblatex
+    - [ ] boxes
+        - [x] blockquote
+        - [ ] NewMaterialBox
+        - [ ] citebox
+    - [ ] captions
+    - [ ] colors
+    - [ ] commands
+    - [ ] environments
+    - [ ] figures
+    - [ ] float
+    - [ ] fonts
+    - [ ] geometry
+    - [ ] headings
+    - [ ] hyperref
+    - [ ] hyphenation
+    - [x] journals
+    - [ ] margins
+    - [x] math
+    - [ ] pagestyles
+    - [ ] tables
+    - [ ] tikz
+    - [ ] typography
+        - [ ] try julia mono
+        - [x] oldstyle numbers
+    - [ ] units
+    - [ ] utils
+    - [ ] warnings
