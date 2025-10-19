@@ -12,7 +12,7 @@
         // index = group index, total = total groups
         show heading: it => {
             set text(weight: "regular")
-            set block(below: 1.5em)
+            set block(above: 2.5em, below: 1.5em)
             caps(it)
         }
         if name != "" {
