@@ -34,6 +34,28 @@
 
 @aar is also great.
 
+#lorem(90)
+
+#block-quote(lorem(6))[
+    1. #lorem(30)
+
+    2. #lorem(40)
+
+    3. #lorem(20)
+
+    4. #lorem(80)
+]
+
+#lorem(82)
+
+$ sin x = sum_(i=123456)^n n! $
+
+1. #lorem(30)
+
+2. #lorem(40)
+
+3. #lorem(20)
+
 #pagebreak()
 
 #glossary(

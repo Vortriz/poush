@@ -1,6 +1,8 @@
 #import "sections/titlepage.typ": titlepage
 #import "sections/glossary.typ": acr-theme
 
+#import "utils/block-quote.typ": block-quote
+
 #let thesis(
     // The title for your work.
     title: [Your Title],
@@ -45,6 +47,7 @@
 
     set page(paper: paper-size)
     set text(size: 11pt, number-type: "old-style")
+    set enum(indent: 1.1em)
 
     titlepage(
         title,
