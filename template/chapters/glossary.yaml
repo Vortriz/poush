@@ -7,3 +7,8 @@ aar:
     short: A&AR
     long: The Astronomy and Astrophysics Review
     group: journal and conference abbreviations
+
+bb:
+    short: B&B
+    long: Blackboards and Beyond
+    group: book titles

@@ -50,6 +50,8 @@
 
 $ sin x = sum_(i=123456)^n n! $
 
+@bb is nice.
+
 1. #lorem(30)
 
 2. #lorem(40)
