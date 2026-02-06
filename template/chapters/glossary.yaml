@@ -1,14 +1,14 @@
 aa:
     short: A&A
     long: Astronomy & Astrophysics
-    group: journal and conference abbreviations
+    group: Journal and Conference Abbreviations
 
 aar:
     short: A&AR
     long: The Astronomy and Astrophysics Review
-    group: journal and conference abbreviations
+    group: Journal and Conference Abbreviations
 
 bb:
     short: B&B
     long: Blackboards and Beyond
-    group: book titles
+    group: Book Titles
