@@ -31,7 +31,9 @@
     - [ ] margins
     - [x] math
     - [ ] pagestyles
-    - [ ] tables
+    - [x] tables
+        - [x] ~booktabs~ can use [booktabs](https://typst.app/universe/package/booktabs) or just plain `table.hline` or `table.vline`
+        - [x] ~threeparttable~ [tblr](https://typst.app/universe/package/tblr) (PS - there is no way to make automatically make *all* tables span the full width of the page, so column `fr` have to be set manually depending on content on a case by case basis)
     - [ ] tikz
     - [ ] typography
         - [ ] try julia mono

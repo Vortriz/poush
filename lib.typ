@@ -2,6 +2,7 @@
 #import "sections/glossary.typ": acr-theme
 
 #import "utils/block-quote.typ": block-quote
+#import "utils/tables.typ": *
 
 #let thesis(
     // The title for your work.
