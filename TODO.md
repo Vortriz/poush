@@ -1,43 +1,54 @@
+* - priority
+
 - [ ] backmatter
-    - [ ] backmatter
-    - [ ] references
+    - [x] backmatter
+    - [ ] references*
     - [x] acronyms
-    - [ ] acknowledgements
-- [ ] frontmatter
-    - [ ] frontmatter
+    - [x] acknowledgements
+- [x] frontmatter
+    - [x] frontmatter
     - [x] titlepage
-    - [ ] colophon
-    - [ ] summary
+    - [x] colophon
 - [ ] preamble
     - [x] acronyms
     - [x] ~algorithms~ user can import package if needed
-    - [ ] biblatex
-    - [ ] boxes
+    - [x] ~biblatex~ [Pergamon](https://typst.app/universe/package/pergamon)
+    - [ ] boxes*
         - [x] blockquote
         - [ ] NewMaterialBox
         - [ ] citebox
-    - [ ] captions
-    - [ ] colors
-    - [ ] commands
+    - [ ] captions*
+    - [x] code - [codly](https://typst.app/universe/package/codly)
     - [ ] environments
-    - [ ] figures
-    - [ ] float
-    - [ ] fonts
+      - [ ] "further reading" env
+    - [x] figures
+    - [x] float
     - [ ] geometry
+      - [ ] normal*
+      - [ ] centered
     - [ ] headings
-    - [ ] hyperref
-    - [ ] hyphenation
+    - [x] hyperlink styling
+        - [x] ~cleverref~ [smartaref](https://typst.app/universe/package/smartaref)
+    - [x] hyphenation
     - [x] journals
     - [ ] margins
     - [x] math
     - [ ] pagestyles
+        - [x] level 1 header
+        - [ ] normal page
+        - [ ] color inverted page
+        - [x] header
     - [x] tables
         - [x] ~booktabs~ can use [booktabs](https://typst.app/universe/package/booktabs) or just plain `table.hline` or `table.vline`
         - [x] ~threeparttable~ [tblr](https://typst.app/universe/package/tblr) (PS - there is no way to make automatically make *all* tables span the full width of the page, so column `fr` have to be set manually depending on content on a case by case basis)
-    - [ ] tikz
-    - [ ] typography
-        - [ ] try julia mono
+    - [x] ~tikz~ [cetz](https://typst.app/universe/package/cetz/) and friends
+    - [x] typography
+        - [x] ~try julia mono~ user will select their own font
         - [x] oldstyle numbers
-    - [ ] units
+    - [x] units
+        - [x] ~siunitx~ [unify](https://typst.app/universe/package/unify)
     - [ ] utils
-    - [ ] warnings
+        - [x] tocloft - formatting table of contents, list of figures, and list of tables
+        - [ ] etoc - mini toc at start of chapters
+    - [x] ~warnings~ useless
+- [ ] rewrite the sample thesis.typ

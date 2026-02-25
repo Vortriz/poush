@@ -16,7 +16,7 @@
         vspace: (1.75em, none),
         font: (auto,),
         fill: (none, outline-fill),
-        gap: (1em,), // [TODO] wait for new release, also manually set this below
+        gap: (1em,),
         fill-right-pad: 0em,
         fill-align: true,
         prefix-transform: (lvl, prefix) => {
@@ -45,7 +45,7 @@
         vspace: (none,),
         font: (auto,),
         fill: (outline-fill,),
-        gap: (auto,), // [TODO] wait for new release
+        gap: (auto,),
         fill-right-pad: 0em,
         fill-align: true,
         prefix-transform: (lvl, prefix) => {
@@ -69,6 +69,8 @@
     title: [List of Figures],
     kind: image,
 ) = {
+    set page(margin: (top: 4.5cm, rest: 3cm))
+
     show outline: set heading(outlined: true)
     show outline.entry: outrageous.show-entry.with(..preset)
     let parts-and-headings = figure
@@ -82,5 +84,4 @@
         // because we want typst to automatically set it based on text language
         outline(target: parts-and-headings)
     }
-    pagebreak()
 }
