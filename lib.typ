@@ -60,7 +60,14 @@
         it
     }
 
-    // section heading style
+    // to get spacing between heading numbering and body
+    show heading: it => {
+        counter(heading).display()
+        h(1em)
+        it.body
+    }
+
+    // level 1 heading style (sections)
     show heading.where(level: 1): set heading(supplement: [Chapter])
     show heading.where(level: 1): it => context {
         set align(center)
@@ -86,6 +93,32 @@
             )
         }
         v(2em)
+    }
+
+    // level 2 headings are uppercased
+    show heading.where(level: 2): it => {
+        set text(weight: "regular")
+        upper(it)
+    }
+
+    // level 3 headings are slightly enlarged and italicized
+    show heading.where(level: 3): set text(
+        size: 1.1em,
+        style: "italic",
+        weight: "regular",
+    )
+
+    // level 4 headings are italicized
+    show heading.where(level: 4): set text(
+        style: "italic",
+        weight: "regular",
+        tracking: 0.015em,
+    )
+
+    // level 5 headings are run-in
+    show heading.where(level: 5): it => {
+        set text(weight: "bold")
+        it.body + h(0.5em)
     }
 
     // show to table caption on top with left alignment and bold supplement

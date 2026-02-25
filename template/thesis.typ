@@ -97,10 +97,16 @@
 #pagebreak()
 = Introduction
 See @my-chapter, @my-section, @my-subsection, @fig:my-figure, @tbl:my-table, and @lst:my-listing.
-== Thesis outline
-=== Bullshit
-==== More bullshit <bs>
-===== Even more bullshit
+
+== High-contrast Imaging
+
+=== Atmospheric influences, adaptive optics, and speckles
+
+==== Transmission, emission, and atmospheric windows <bs>
+
+===== Dark frame subtraction
+#lorem(30)
+
 @bs
 
 @aa is a great.
@@ -108,6 +114,8 @@ See @my-chapter, @my-section, @my-subsection, @fig:my-figure, @tbl:my-table, and
 @aar is also great.
 
 @bb is nice.
+
+
 #pagebreak()
 #booktbl(
     columns: 7,

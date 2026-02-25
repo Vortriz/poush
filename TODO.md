@@ -26,7 +26,7 @@
     - [ ] geometry
       - [ ] normal*
       - [ ] centered
-    - [ ] headings
+    - [x] headings*
     - [x] hyperlink styling
         - [x] ~cleverref~ [smartaref](https://typst.app/universe/package/smartaref)
     - [x] hyphenation
