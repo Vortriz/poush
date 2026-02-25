@@ -1,4 +1,4 @@
-* - priority
+`* - priority`
 
 - [ ] backmatter
     - [x] backmatter
