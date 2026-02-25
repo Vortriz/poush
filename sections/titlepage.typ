@@ -1,16 +1,36 @@
 #import "../utils/text.typ": caps
 
 #let titlepage(
-    title,
-    author,
-    degree,
-    major,
-    department,
-    supervisors,
-    institution,
-    logo,
-    date,
-    date-format,
+    // Title of the thesis.
+    title: [Your Title],
+    // Author name to be displayed
+    author: [Author],
+    // Date that will be displayed on cover page.
+    // The value needs to be of the 'datetime' type.
+    // More info: https://typst.app/docs/reference/foundations/datetime/
+    date: datetime.today(),
+    // Format in which the date will be displayed on cover page.
+    // More info: https://typst.app/docs/reference/foundations/datetime/#format
+    date-format: "[month repr:long] [day padding:zero], [year repr:full]",
+    // The degree you are working towards
+    degree: [Doctor of Sciences],
+    // What field you are majoring in
+    major: none,
+    // The faculty and department at which you are working
+    department: none,
+    // The supervisor(s) for your work. Takes an array of [Name], [Affiliation]
+    supervisors: (
+        (
+            name: [Supervisor Name],
+            affiliation: [The University, \
+                Faculty of Science and Technology, \
+                Department of Computer Science],
+        ),
+    ),
+    // The name of your institution.
+    institution: none,
+    // The path to logo of your institution.
+    logo: none,
 ) = {
     set page(margin: (top: 3cm, bottom: 3cm, inside: 3cm, outside: 3cm))
     set align(center)

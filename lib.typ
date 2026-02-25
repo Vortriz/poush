@@ -6,63 +6,116 @@
 #import "utils/tables.typ": *
 
 #let thesis(
-    // The title for your work.
-    title: [Your Title],
-    // Author.(has to be string type)
-    author: "Author",
-    // The degree you are working towards
-    degree: [Doctor of Sciences],
-    // What field you are majoring in
-    major: none,
-    // The faculty and department at which you are working
-    department: none,
-    // The supervisor(s) for your work. Takes an array of [Name], [Affiliation]
-    supervisors: (
-        (
-            name: [Supervisor Name],
-            affiliation: [The University, \
-                Faculty of Science and Technology, \
-                Department of Computer Science],
-        )
+    // For document metadata.
+    // https://typst.app/docs/reference/model/document/
+    metadata: (
+        title: none,
+        author: (),
+        description: none,
+        keywords: (),
+        date: auto,
     ),
-    // The name of your institution.
-    institution: none,
-    // The path to logo of your institution.
-    logo: none,
-    // Date that will be displayed on cover page.
-    // The value needs to be of the 'datetime' type.
-    // More info: https://typst.app/docs/reference/foundations/datetime/
-    date: datetime.today(),
-    // Format in which the date will be displayed on cover page.
-    // More info: https://typst.app/docs/reference/foundations/datetime/#format
-    date-format: "[month repr:long] [day padding:zero], [year repr:full]",
+
     // The paper size to use.
     paper-size: "a4",
+
+    // The title page of the thesis.
+    titlepage: titlepage(),
+
+    // Frontmatter of thesis.
+    // Contains abstract, ToC, etc.
+    // Pages are arranged as in the specified order.
+    frontmatter: (
+        create-outline(
+            preset: outline-presets.toc,
+            kind: none,
+        ),
+    ),
+
     // The content of your work.
     body,
 ) = {
-    set document(title: title, author: author, date: if date != none {
-        date
-    } else {
-        auto
-    })
+    set document(..metadata)
 
     set page(paper: paper-size)
     set text(size: 11pt, number-type: "old-style")
     set enum(indent: 1.1em)
+    // set outline(indent: auto)
 
-    titlepage(
-        title,
-        author,
-        degree,
-        major,
-        department,
-        supervisors,
-        institution,
-        logo,
-        date,
-        date-format,
-    )
+    set heading(numbering: "1.1")
+    show heading.where(level: 1): set heading(supplement: [Chapter])
 
-    body
+    let href-color = rgb("#3251A3")
+    show link: it => text(fill: href-color, it)
+    show ref: it => {
+        set text(fill: href-color, weight: "bold") if (
+            it.element != none and it.element.func() == heading
+        )
+        it
+    }
+
+    // section heading style
+    show heading.where(level: 1): it => context {
+        set align(center)
+        set line(length: 100%, stroke: 0.5pt)
+        set stack(dir: ttb, spacing: 1em)
+        pagebreak(weak: true, to: "odd")
+
+        let styled-heading = (
+            line(),
+            text(size: 20.74pt, it.body),
+            line(),
+        )
+
+        let num = counter(heading).get().first()
+        if num == 0 {
+            stack(..styled-heading)
+        } else {
+            stack(
+                text(size: 12pt, weight: "regular", smallcaps(
+                    [#it.supplement #num],
+                )),
+                ..styled-heading,
+            )
+        }
+        v(2em)
+    }
+
+    // show to table caption on top with left alignment and bold supplement
+    show figure.where(kind: "i-figured-table"): tbl => {
+        set figure.caption(position: top)
+        show figure.caption: cpt => {
+            set align(left)
+            let heading_counter = context counter(heading).get().first()
+            let val = context cpt.counter.get().first()
+            strong[Table #heading_counter.#val: ] + cpt.body
+        }
+        tbl
+    }
+
+    // apply the show rules (these can be customized)
+    show heading: i-figured.reset-counters
+    show figure: i-figured.show-figure
+
+    // Pages start here
+    set pagebreak(weak: true, to: "odd")
+
+    {
+        titlepage
+        pagebreak()
+    }
+
+    set page(numbering: "i")
+    for item in frontmatter {
+        item
+        pagebreak()
+    }
+
+    show smallcaps: it => text(tracking: 0.05em, it)
+
+    {
+        set page(numbering: "1")
+        set pagebreak(weak: false, to: none)
+        body
+    }
 }
