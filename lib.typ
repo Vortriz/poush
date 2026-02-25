@@ -43,7 +43,6 @@
     // set outline(indent: auto)
 
     set heading(numbering: "1.1")
-    show heading.where(level: 1): set heading(supplement: [Chapter])
 
     let href-color = rgb("#3251A3")
     show link: it => text(fill: href-color, it)
@@ -55,6 +54,7 @@
     }
 
     // section heading style
+    show heading.where(level: 1): set heading(supplement: [Chapter])
     show heading.where(level: 1): it => context {
         set align(center)
         set line(length: 100%, stroke: 0.5pt)
@@ -67,10 +67,10 @@
             line(),
         )
 
-        let num = counter(heading).get().first()
-        if num == 0 {
+        if it.numbering == none {
             stack(..styled-heading)
         } else {
+            let num = counter(heading).get().first()
             stack(
                 text(size: 12pt, weight: "regular", smallcaps(
                     [#it.supplement #num],
