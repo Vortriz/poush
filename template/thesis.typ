@@ -48,6 +48,12 @@
     frontmatter: (
         colophon[This dissertation was prepared with Typst using #link("https://github.com/Vortriz/poush", [Poush]) template. The main text is set in Libertinus Serif. The monospace font is `DejaVu Sans Mono`.],
 
+        // Abstract
+        generic-section(title: [Abstract], body: [
+            #set par(justify: true)
+            #lorem(700)
+        ]),
+
         // ToC
         create-outline(
             preset: outline-presets.toc,
@@ -73,6 +79,14 @@
             title: [List of Listings],
             kind: raw,
         ),
+    ),
+
+    backmatter: (
+        generic-section(
+            title: [Used Software & Generative AI Declaration ],
+            body: [#lorem(200)],
+        ),
+        generic-section(title: [Acknowledgements], body: [#lorem(300)]),
     ),
 )
 

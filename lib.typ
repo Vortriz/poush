@@ -1,6 +1,7 @@
 #import "sections/outlines.typ": *
 #import "sections/glossary.typ": acr-theme
 #import "sections/titlepage.typ": titlepage
+#import "sections/generic.typ": generic-section
 #import "sections/colophon.typ": colophon
 
 #import "utils/block-quote.typ": block-quote
@@ -32,6 +33,11 @@
             kind: none,
         ),
     ),
+
+    // Backmatter of thesis.
+    // Contains bibliography, etc.
+    // Pages are arranged as in the specified order.
+    backmatter: (),
 
     // The content of your work.
     body,
@@ -118,5 +124,9 @@
         set page(numbering: "1")
         set pagebreak(weak: false, to: none)
         body
+    }
+
+    for item in backmatter {
+        item
     }
 }
