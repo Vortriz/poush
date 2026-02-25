@@ -1,6 +1,7 @@
 #import "sections/outlines.typ": *
 #import "sections/glossary.typ": acr-theme
 #import "sections/titlepage.typ": titlepage
+#import "sections/colophon.typ": colophon
 
 #import "utils/block-quote.typ": block-quote
 #import "utils/tables.typ": *
