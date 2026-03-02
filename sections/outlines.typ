@@ -69,8 +69,6 @@
     title: [List of Figures],
     kind: image,
 ) = {
-    set page(margin: (top: 4.5cm, rest: 3cm))
-
     show outline: set heading(outlined: true)
     show outline.entry: outrageous.show-entry.with(..preset)
     let parts-and-headings = figure

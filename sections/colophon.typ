@@ -7,5 +7,4 @@
     #smallcaps[Colophon]
 
     #body
-    #v(4em)
 ]

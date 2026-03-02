@@ -137,7 +137,7 @@
     show heading: i-figured.reset-counters
     show figure: i-figured.show-figure
 
-    // Pages start here
+    // pages start here
     set pagebreak(weak: true, to: "odd")
 
     {
@@ -145,21 +145,26 @@
         pagebreak()
     }
 
+    // frontmatter
     set page(numbering: "i")
     for item in frontmatter {
+        set page(margin: (y: 4.5cm, rest: 3cm))
         item
-        pagebreak()
     }
 
     show smallcaps: it => text(tracking: 0.05em, it)
+    set page(numbering: "1")
 
     {
-        set page(numbering: "1")
         set pagebreak(weak: false, to: none)
         body
     }
 
+    // backmatter
+    set heading(numbering: none)
+
     for item in backmatter {
+        set page(margin: (y: 4.5cm, rest: 3cm))
         item
     }
 }
