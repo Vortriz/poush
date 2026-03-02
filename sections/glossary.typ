@@ -2,21 +2,23 @@
 
 #let acr-theme = (
     // Main section
-    // [TODO] style it
     section: (title, body) => {
-        heading(level: 1, title)
+        heading(level: 1, numbering: none, title)
+
+        // to offset the extra space added by the first level 2 heading in the group
+        v(-2.5em)
+
         body
     },
     // Group of related terms
     group: (name, index, total, body) => {
         // index = group index, total = total groups
-        show heading: it => {
-            set text(weight: "regular")
-            set block(above: 2.5em, below: 1.5em)
-            caps(it)
-        }
+        show heading: it => block(above: 2.5em, below: 1.5em)[
+            #set text(weight: "regular")
+            #caps(it)
+        ]
         if name != "" {
-            heading(level: 2, name)
+            heading(level: 2, numbering: none, name)
         }
         body
     },

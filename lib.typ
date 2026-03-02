@@ -62,8 +62,10 @@
 
     // to get spacing between heading numbering and body
     show heading: it => {
-        counter(heading).display()
-        h(1em)
+        if it.numbering != none {
+            counter(heading).display()
+            h(1em)
+        }
         it.body
     }
 
