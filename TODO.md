@@ -1,8 +1,8 @@
 `* - priority`
 
-- [ ] backmatter
+- [x] backmatter
     - [x] backmatter
-    - [ ] references*
+    - [x] references*
     - [x] acronyms
     - [x] acknowledgements
 - [x] frontmatter
@@ -36,6 +36,7 @@
     - [ ] pagestyles
         - [x] level 1 header
         - [ ] normal page
+            - [ ] page numbering position
         - [ ] color inverted page
         - [x] header
     - [x] tables
