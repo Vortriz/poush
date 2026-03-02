@@ -82,6 +82,11 @@
     ),
 
     backmatter: (
+        bibliography("references.bib", style: "apa"),
+        glossary(
+            title: "Acronyms & Abbreviations",
+            theme: acr-theme,
+        ),
         generic-section(
             title: [Used Software & Generative AI Declaration ],
             body: [#lorem(200)],
@@ -94,7 +99,6 @@
 
 
 
-#pagebreak()
 = Introduction
 See @my-chapter, @my-section, @my-subsection, @fig:my-figure, @tbl:my-table, and @lst:my-listing.
 
@@ -115,6 +119,7 @@ See @my-chapter, @my-section, @my-subsection, @fig:my-figure, @tbl:my-table, and
 
 @bb is nice.
 
+@smit54 is some reference.
 
 #pagebreak()
 #booktbl(
@@ -379,21 +384,9 @@ See @my-chapter, @my-section, @my-subsection, @fig:my-figure, @tbl:my-table, and
 )
 #pagebreak()
 #figure([a], caption: [Example call stack of the rush VM.])
-#figure(
-    [```rust fn main() {}```],
-    caption: [VM instructions matching the AST in @fig:ast-and-vm-instructions.],
-)
 #pagebreak()
 === Fetch-Decode-Execute Cycle of the VM
-#figure(
-    [```rust fn main() {}```],
-    caption: [The '`run`' method of the rush VM.],
-)
-#pagebreak()
-#figure(
-    [```rust fn main() {}```],
-    caption: [Parts of the '`run_instruction`' method of the rush VM.],
-)
+
 #pagebreak()
 === Comparing the VM to the Tree-Walking Interpreter
 #figure(
@@ -535,11 +528,3 @@ See @my-chapter, @my-section, @my-subsection, @fig:my-figure, @tbl:my-table, and
 #pagebreak()
 = Final Thoughts and Conclusions
 #pagebreak()
-#pagebreak()
-#set heading(numbering: none)
-#glossary(
-    title: "Acronyms & Abbreviations",
-    theme: acr-theme,
-)
-#pagebreak()
-= Bibliography
