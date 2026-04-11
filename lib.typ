@@ -149,6 +149,7 @@
 
     show smallcaps: it => text(tracking: 0.05em, it)
     set page(numbering: "1")
+    counter(page).update(1)
 
     {
         set pagebreak(weak: false, to: none)
