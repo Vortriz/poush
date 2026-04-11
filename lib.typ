@@ -21,13 +21,11 @@
     // The paper size to use.
     paper-size: "a4",
 
-    // The title page of the thesis.
-    titlepage: titlepage(),
-
     // Frontmatter of thesis.
     // Contains abstract, ToC, etc.
     // Pages are arranged as in the specified order.
     frontmatter: (
+        titlepage(),
         create-outline(
             preset: outline-presets.toc,
             kind: none,
@@ -141,11 +139,6 @@
 
     // pages start here
     set pagebreak(weak: true, to: "odd")
-
-    {
-        titlepage
-        pagebreak()
-    }
 
     // frontmatter
     set page(numbering: "i")

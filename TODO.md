@@ -53,3 +53,4 @@
         - [ ] etoc - mini toc at start of chapters
     - [x] ~warnings~ useless
 - [ ] rewrite the sample thesis.typ
+- [x] ability to put custom pages in the frontmatter and backmatter to comply with university requirements

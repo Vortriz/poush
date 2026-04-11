@@ -21,31 +21,31 @@
 
     paper-size: "us-letter",
 
-    titlepage: titlepage(
-        title: info.title,
-        author: info.author,
-        date: info.date,
-        degree: [Doctor of Sciences],
-        major: [Computer Science],
-        department: [Department of Computer Science],
-        supervisors: (
-            (
-                name: [Great Professor],
-                affiliation: [The University, \
-                    Faculty of Science and Technology, \
-                    Department of Computer Science
-                ],
-            ),
-            (
-                name: [Another Great Professor],
-                affiliation: [External Company A/S],
-            ),
-        ),
-        institution: [The University],
-        logo: "/template/assets/logo.png",
-    ),
-
     frontmatter: (
+        titlepage(
+            title: info.title,
+            author: info.author,
+            date: info.date,
+            degree: [Doctor of Sciences],
+            major: [Computer Science],
+            department: [Department of Computer Science],
+            supervisors: (
+                (
+                    name: [Great Professor],
+                    affiliation: [The University, \
+                        Faculty of Science and Technology, \
+                        Department of Computer Science
+                    ],
+                ),
+                (
+                    name: [Another Great Professor],
+                    affiliation: [External Company A/S],
+                ),
+            ),
+            institution: [The University],
+            logo: "/template/assets/logo.png",
+        ),
+
         colophon[This dissertation was prepared with Typst using #link("https://github.com/Vortriz/poush", [Poush]) template. The main text is set in Libertinus Serif. The monospace font is `DejaVu Sans Mono`.],
 
         // Abstract
