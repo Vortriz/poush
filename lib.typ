@@ -5,6 +5,7 @@
 #import "sections/colophon.typ": colophon
 
 #import "utils/block-quote.typ": block-quote
+#import "utils/epigraph.typ": epigraph
 #import "utils/tables.typ": *
 
 #let thesis(body) = {
