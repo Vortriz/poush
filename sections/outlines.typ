@@ -69,6 +69,10 @@
     title: [List of Figures],
     kind: image,
 ) = {
+    set page(
+        margin: (top: 4.5cm, bottom: 3.5cm, inside: 3cm, outside: 3cm),
+        footer-descent: 0.5em,
+    )
     show outline: set heading(outlined: true)
     show outline.entry: outrageous.show-entry.with(..preset)
     let parts-and-headings = figure
@@ -82,4 +86,8 @@
         // because we want typst to automatically set it based on text language
         outline(target: parts-and-headings)
     }
+
+    // hack to ensure that the page inserted is blank
+    set page(numbering: none)
+    pagebreak(weak: true, to: "odd")
 }

@@ -3,7 +3,7 @@
 #import "@preview/glossy:0.8.0": *
 
 #let info = (
-    title: "Some Awesome Title",
+    title: "Some long and awesome title for your spectacular thesis on a very niche subject",
     author: "John B Doe",
     date: datetime(year: 2025, month: 6, day: 1),
 )
@@ -15,102 +15,108 @@
     keywords: ("thesis", "science"),
     date: info.date,
 )
+#set page(paper: "us-letter")
+
+#show: thesis
+
+// Frontmatter -------------------------------------------
+
+#set page(numbering: "i")
+
+
+#titlepage(
+    title: info.title,
+    author: info.author,
+    date: info.date,
+    degree: [Doctor of Sciences],
+    supervisors: (
+        (
+            name: [Great Professor],
+            affiliation: [The University, \
+                Faculty of Science and Technology, \
+                Department of Computer Science
+            ],
+        ),
+        (
+            name: [Another Great Professor],
+            affiliation: [External Company A/S],
+        ),
+    ),
+    institution: [The University],
+)
+
+#colophon[This dissertation was prepared with Typst using #link("https://github.com/Vortriz/poush", [Poush]) template. The main text is set in Libertinus Serif. The monospace font is `DejaVu Sans Mono`.]
+
+// Abstract
+#generic-section(
+    title: [Abstract],
+    body: [
+        // #lorem(700)
+        Over the past thirty years, exoplanet science—that is, the study of planets beyond our Solar System— has become one of the most thriving and dynamic subfields of astronomy. At the time of this writing, close to 6000 extrasolar planets have been discovered through various methods, and measurements from groundbreaking instruments such as the James Webb Space Telescope (JWST) allow us to study their properties in unprecedented detail. Complementing these hardware advances, there has recently been an increased interest in methods for processing observational data, especially through the use of machine learning (ML). This should not come as a surprise, considering the success that ML has had in other domains, and given that both the detection and characterization of exoplanets are fundamentally challenging inference problems which require the extraction of information from complex, noisy data that push traditional analysis techniques to their limits.
+
+        In this thesis, we present three contributions to this young research field at the intersection of exoplanet science and ML, which trace an arc from the detection of extrasolar planets with the help of ML to the characterization of their atmospheres. The first study addresses the problem of post-processing data from high-contrast imaging. We show how we can combine physical domain knowledge about the data with techniques from the field of causal inference to learn pixel-wise models for the systematic noise that allow us to denoise the data and thus reveal previously unseen companions. We demonstrate the applicability of our approach on four publicly available datasets from the VLT/NACO instrument. A particular innovation of our approach is the explicit incorporation of the external observing conditions, which experiments improves the denoising performance.
+
+        In the second study, we turn to the problem of atmospheric retrieval; that is, the inference of parameters such as the chemical composition from an observed exoplanet spectrum. We show that we can use neural networks to replace a key component in the standard Bayesian inference pipeline; namely the parameterization of the thermal structure. This reduces the number of parameters needed to describe an atmosphere, thus speeding up retrievals or freeing up computational resources for other parameters of interest. In addition, it effectively allows performing atmospheric retrieval with pressure–temperature profiles from self-consistent atmospheric models, which are usually too computationally expensive for Bayesian parameter inference.
+
+        Finally, in the third contribution, we completely replace the traditional atmospheric characterization workflow using stochastic samplers with a simulation-based inference approach based on continuous normalizing flows. We combine this approach with importance sampling to ensure the reliability of our results and show that we can learn models that amortize over different assumptions for the noise in the data, thus boosting the practical applicability of our method. We demonstrate this practical applicability and validate it against traditional alternatives through extensive experiments on simulated emission spectra of a gas giant-type exoplanet.
+    ],
+)
+
 #set outline(depth: 2)
 
-#show: thesis.with(
-    paper-size: "us-letter",
-
-    frontmatter: (
-        titlepage(
-            title: info.title,
-            author: info.author,
-            date: info.date,
-            degree: [Doctor of Sciences],
-            major: [Computer Science],
-            department: [Department of Computer Science],
-            supervisors: (
-                (
-                    name: [Great Professor],
-                    affiliation: [The University, \
-                        Faculty of Science and Technology, \
-                        Department of Computer Science
-                    ],
-                ),
-                (
-                    name: [Another Great Professor],
-                    affiliation: [External Company A/S],
-                ),
-            ),
-            institution: [The University],
-            logo: "/template/assets/logo.png",
-        ),
-
-        colophon[This dissertation was prepared with Typst using #link("https://github.com/Vortriz/poush", [Poush]) template. The main text is set in Libertinus Serif. The monospace font is `DejaVu Sans Mono`.],
-
-        // Abstract
-        generic-section(title: [Abstract], body: [
-            #set par(justify: true)
-            #lorem(700)
-        ]),
-
-        // ToC
-        create-outline(
-            preset: outline-presets.toc,
-            kind: none,
-        ),
-
-        // List of figures
-        create-outline(
-            preset: outline-presets.figures,
-            title: [List of Figures],
-        ),
-
-        // List of tables
-        create-outline(
-            preset: outline-presets.figures,
-            title: [List of Tables],
-            kind: table,
-        ),
-
-        // List of listings
-        create-outline(
-            preset: outline-presets.figures,
-            title: [List of Listings],
-            kind: raw,
-        ),
-    ),
-
-    backmatter: (
-        bibliography("references.bib", style: "apa"),
-        glossary(
-            title: "Acronyms & Abbreviations",
-            theme: acr-theme,
-        ),
-        generic-section(
-            title: [Used Software & Generative AI Declaration ],
-            body: [#lorem(200)],
-        ),
-        generic-section(title: [Acknowledgements], body: [#lorem(300)]),
-    ),
+// ToC
+#create-outline(
+    preset: outline-presets.toc,
+    kind: none,
 )
+
+// List of figures
+#create-outline(
+    preset: outline-presets.figures,
+    title: [List of Figures],
+)
+
+// List of tables
+#create-outline(
+    preset: outline-presets.figures,
+    title: [List of Tables],
+    kind: table,
+)
+
+// List of listings
+#create-outline(
+    preset: outline-presets.figures,
+    title: [List of Listings],
+    kind: raw,
+)
+
 
 #show: init-glossary.with(yaml("chapters/glossary.yaml"))
 
+#import "@preview/marginalia:0.3.1" as marginalia: note, notefigure, wideblock
 
+
+#show: marginalia.setup.with(
+    book: true,
+    top: 4cm,
+    bottom: 2.88cm,
+    inner: (far: 2.75cm, width: 0cm, sep: 0cm),
+    outer: (far: 2.25cm, width: 4.7cm, sep: 0.8cm),
+)
+#let note = note.with(side: "outer")
+
+// Body -----------------------------------------------
+
+#set page(numbering: "1")
+#counter(page).update(1)
 
 = Introduction
-See @my-chapter, @my-section, @my-subsection, @fig:my-figure, @tbl:my-table, and @lst:my-listing.
 
-== High-contrast Imaging
+Picture the night sky. A black canvas, filled with thousands upon thousands of stars. The Milky Way alone, our home galaxy, is estimated to contain at least one hundred billion of them (see, e.g., Bok & Bok, 1974  , p. 23), most of them too faint to be seen by the unaided eye. Statistically speaking, each of these stars harbors at least one planet (Cassan et al., 2012  ). While speculations concerning this matter can be traced back for centuries, the roots of exoplanet science as an empirical discipline are found in the 1990s, a mere three decades ago. Historically, much of the progress in the field has been driven by advances on the hardware side: larger telescopes with better adaptive optics, new instruments with higher resolution, or observations from space that eliminate the influence of the Earth’s atmosphere, have all contributed significantly to the fact that the detection of new exoplanets has almost become a routine afafir these days. In the near future, the next generation of ground-based telescopes will provide another major leap forward, possibly capturing the first image of a small, rocky exoplanet around a nearby star (Quanz et al., 2014  ). In addition to these hardware advances, however, there has also been a recent growth of interest in data processing, specifically in the application of machine learning (ML) methods. This very thesis may be taken as a case in point, but it is only one example of a larger trend that is illustrated in fig. 1.1. Machine learning for exoplanet science is a young but thriving area of research that is not only of interest to astrophysicists, but has even found its way into the limelight of a major ML conference in the form of two data challenges that were part of the NeurIPS competition track in 2022 and 2024 (see Changeat & Yip, 2023  ).
 
-=== Atmospheric influences, adaptive optics, and speckles
+One does not have to look far to fnid the reasons for this development. First, improvements in hardware are pushing the limits of what is possible (e.g., what types of planets are accessible to observations), but at that very limit, advancing our understanding of extrasolar planets—for example, about their formation and evolution—again requires extracting information from complex, noisy data. Second, better hardware itself creates new challenges, both in terms of the quantity and the quality of the data. If we think specifically about atmospheric characterization, missions such as ARIEL (Atmospheric Remote-sensing Infrared Exoplanet Large-survey; Tinetti et al., 2021  ) will drastically increase the number of exoplanet spectra to be analyzed, likely pushing traditional inference methods to their limit in terms of the computational cost; an issue that we discuss in chapters 4 and 5 of this thesis. Regarding the quality of the data, higher spectral resolution also means higher sensitivity to more and more physical and chemical processes in the atmospheres of the observed planets, which in turn increases the complexity (and thus the cost) of the theoretical models that are required to interpret the data. Another important point to consider is the development of new hardware. On the one hand, there is the development process itself, which may require optimizing key instrument parameters by simulating entire surveys for different configurations, which brings us back to the question of scalability. On the other hand, new hardware can be designed already with the idea that its data products can be analyzed with ML, which may affect what data (and metadata) are collected and stored in the first place. Given how much of a driver exoplanet science is for astronomical instrument design,2 this is a possibility that is worth taking seriously.
 
-==== Transmission, emission, and atmospheric windows <bs>
-
-===== Dark frame subtraction
-#lorem(30)
-
-@bs
+The appeal thus seems clear: ML has demonstrated exceptional potential in many fields, from language modeling (e.g., OpenAI et al., 2023  ) to protein folding (Jumper et al., 2021  ), and it comes with the promise of being able to handle data that traditional approaches struggle with. At the same time, much of what we have discussed above is still that—a promise, or rather an opportunity, for the future. Things are moving fast, but as it stands, it seems fair to say that ML is not quite as mature and widely adopted in exoplanet science as in other fields. This thesis presents my contributions toward changing this, and toward further establishing ML methods as an important tool for detecting and studying
 
 @aa is a great.
 
@@ -127,9 +133,9 @@ See @my-chapter, @my-section, @my-subsection, @fig:my-figure, @tbl:my-table, and
     // combine header cells
     cells((0, (1, 4)), colspan: 3, stroke: (bottom: 0.03em)),
     // table notes, remarks, and caption
-    note((1, (1, 4)), [$m v$ is in kg·m².]),
-    note((1, (3, 6)), [Time is in secs.]),
-    note(sym.dagger, (2, 0), [Another note.]),
+    tabular.note((1, (1, 4)), [$m v$ is in kg·m².]),
+    tabular.note((1, (3, 6)), [Time is in secs.]),
+    tabular.note(sym.dagger, (2, 0), [Another note.]),
     remarks: [_Note:_ ] + lorem(18),
     caption: [This is a caption],
     note-fun: x => super(text(fill: blue, x)),
@@ -527,3 +533,23 @@ See @my-chapter, @my-section, @my-subsection, @fig:my-figure, @tbl:my-table, and
 #pagebreak()
 = Final Thoughts and Conclusions
 #pagebreak()
+
+// Backmatter -------------------------------------------
+#set heading(numbering: none)
+
+#bibliography("references.bib", style: "apa"),
+
+#glossary(
+    title: "Acronyms & Abbreviations",
+    theme: acr-theme,
+)
+
+#generic-section(
+    title: [Used Software & Generative AI Declaration],
+    body: [#lorem(200)],
+)
+
+#generic-section(
+    title: [Acknowledgements],
+    body: [#lorem(300)],
+)

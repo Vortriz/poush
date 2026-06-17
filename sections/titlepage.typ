@@ -45,29 +45,31 @@
 
     v(1fr)
 
-    par[
+    [
         presented by \
         #smallcaps(author) \
     ]
 
-    if date != none {
-        par(date.display(date-format))
-    }
+    if date != none [
+        #date.display(date-format)
+    ]
 
     v(1fr)
 
-    par(
-        [
-            accepted on the recommendation of \
+    [
+        accepted on the recommendation of \
+        #for supervisor in supervisors [
+            #smallcaps(supervisor.name) \
         ]
-            + for supervisor in supervisors [
-                #smallcaps(supervisor.name) \
-            ],
-    )
+    ]
 
     v(1fr)
 
-    if institution != none {
-        par(smallcaps(institution))
-    }
+    if institution != none [
+        #smallcaps(institution)
+    ]
+
+    // hack to ensure that the page inserted is blank
+    set page(numbering: none)
+    pagebreak(weak: true, to: "odd")
 }

@@ -7,35 +7,11 @@
 #import "utils/block-quote.typ": block-quote
 #import "utils/tables.typ": *
 
-#let thesis(
-    // The paper size to use.
-    paper-size: "a4",
-
-    // Frontmatter of thesis.
-    // Contains abstract, ToC, etc.
-    // Pages are arranged as in the specified order.
-    frontmatter: (
-        titlepage(),
-        create-outline(
-            preset: outline-presets.toc,
-            kind: none,
-        ),
-    ),
-
-    // Backmatter of thesis.
-    // Contains bibliography, etc.
-    // Pages are arranged as in the specified order.
-    backmatter: (),
-
-    // The content of your work.
-    body,
-) = {
-    set page(paper: paper-size)
+#let thesis(body) = {
     set text(size: 11pt, number-type: "old-style")
-    set enum(indent: 1.1em)
-    // set outline(indent: auto)
 
     set heading(numbering: "1.1")
+    set enum(indent: 1.1em)
 
     let href-color = rgb("#3251A3")
     show link: it => text(fill: href-color, it)
@@ -46,7 +22,7 @@
         it
     }
 
-    // to get spacing between heading numbering and body
+    // for spacing between heading numbering and body
     show heading: it => {
         if it.numbering != none {
             counter(heading).display()
@@ -58,10 +34,11 @@
     // level 1 heading style (sections)
     show heading.where(level: 1): set heading(supplement: [Chapter])
     show heading.where(level: 1): it => context {
+        pagebreak(weak: true, to: "odd")
+
         set align(center)
         set line(length: 100%, stroke: 0.5pt)
         set stack(dir: ttb, spacing: 1em)
-        pagebreak(weak: true, to: "odd")
 
         let styled-heading = (
             line(),
@@ -125,30 +102,12 @@
     show heading: i-figured.reset-counters
     show figure: i-figured.show-figure
 
-    // pages start here
-    set pagebreak(weak: true, to: "odd")
-
-    // frontmatter
-    set page(numbering: "i")
-    for item in frontmatter {
-        set page(margin: (y: 4.5cm, rest: 3cm))
-        item
-    }
-
+    set page(footer-descent: 1.5em)
     show smallcaps: it => text(tracking: 0.05em, it)
-    set page(numbering: "1")
-    counter(page).update(1)
-
-    {
-        set pagebreak(weak: false, to: none)
-        body
-    }
-
-    // backmatter
-    set heading(numbering: none)
-
-    for item in backmatter {
-        set page(margin: (y: 4.5cm, rest: 3cm))
-        item
-    }
+    set par(
+        justify: true,
+        leading: 6.2pt,
+        first-line-indent: 2em,
+    )
+    body
 }
