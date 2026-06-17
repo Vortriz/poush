@@ -7,18 +7,17 @@
     author: "John B Doe",
     date: datetime(year: 2025, month: 6, day: 1),
 )
+
+#set document(
+    title: info.title,
+    author: info.author,
+    description: [An small and awesome description of the document.],
+    keywords: ("thesis", "science"),
+    date: info.date,
+)
 #set outline(depth: 2)
 
 #show: thesis.with(
-    // Document's metadata
-    metadata: (
-        title: info.title,
-        author: (info.author),
-        description: [An awesome description of the thesis.],
-        keywords: ("thesis", "science"),
-        date: info.date,
-    ),
-
     paper-size: "us-letter",
 
     frontmatter: (

@@ -8,16 +8,6 @@
 #import "utils/tables.typ": *
 
 #let thesis(
-    // For document metadata.
-    // https://typst.app/docs/reference/model/document/
-    metadata: (
-        title: none,
-        author: (),
-        description: none,
-        keywords: (),
-        date: auto,
-    ),
-
     // The paper size to use.
     paper-size: "a4",
 
@@ -40,8 +30,6 @@
     // The content of your work.
     body,
 ) = {
-    set document(..metadata)
-
     set page(paper: paper-size)
     set text(size: 11pt, number-type: "old-style")
     set enum(indent: 1.1em)
