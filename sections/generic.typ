@@ -1,16 +1,17 @@
 #let generic-section(title: none, body: none) = {
     set page(
-        margin: (top: 4.5cm, bottom: 3.5cm, inside: 3cm, outside: 3cm),
+        margin: (
+            top: 4.5cm,
+            bottom: 3.5cm,
+            inside: 3cm,
+            outside: 3cm,
+        ),
         footer-descent: 0pt,
     )
     heading(level: 1, numbering: none)[#title]
 
-    set par(
-        justify: true,
-        leading: 6.2pt,
-        spacing: 6pt,
-        first-line-indent: 2em,
-    )
+    // set spacing to be the same as the leading
+    set par(spacing: 0.56em)
 
     body
 

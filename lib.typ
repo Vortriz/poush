@@ -52,9 +52,11 @@
         } else {
             let num = counter(heading).get().first()
             stack(
-                text(size: 12pt, weight: "regular", smallcaps(
-                    [#it.supplement #num],
-                )),
+                text(
+                    size: 12pt,
+                    weight: "regular",
+                    smallcaps[#it.supplement #num],
+                ),
                 ..styled-heading,
             )
         }
@@ -69,7 +71,7 @@
 
     // level 3 headings are slightly enlarged and italicized
     show heading.where(level: 3): set text(
-        size: 1.1em,
+        size: 12pt,
         style: "italic",
         weight: "regular",
     )
@@ -107,7 +109,7 @@
     show smallcaps: it => text(tracking: 0.05em, it)
     set par(
         justify: true,
-        leading: 6.2pt,
+        leading: 0.56em,
         first-line-indent: 2em,
     )
     body

@@ -70,7 +70,12 @@
     kind: image,
 ) = {
     set page(
-        margin: (top: 4.5cm, bottom: 3.5cm, inside: 3cm, outside: 3cm),
+        margin: (
+            top: 4.5cm,
+            bottom: 3.5cm,
+            inside: 3cm,
+            outside: 3cm,
+        ),
         footer-descent: 0.5em,
     )
     show outline: set heading(outlined: true)

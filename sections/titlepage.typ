@@ -26,21 +26,32 @@
     institution: none,
 ) = {
     set page(
-        margin: (top: 3cm, bottom: 3cm, inside: 3cm, outside: 3cm),
+        margin: (
+            top: 4.5cm,
+            bottom: 3.5cm,
+            inside: 3cm,
+            outside: 3cm,
+        ),
         numbering: none,
     )
     set align(center)
-    show smallcaps: it => text(size: 13pt, it)
+    show smallcaps: it => text(size: 1.1em, it)
 
-    v(0.5fr)
+    v(0.25fr)
 
-    par(leading: 1.5em, text(size: 14.4pt, caps(title)))
+    par(
+        leading: 1.5em,
+        text(
+            size: 1.3em,
+            caps(title),
+        ),
+    )
 
     v(1fr)
 
     [
         A thesis submitted to attain the degree of \
-        #smallcaps(degree) \
+        #caps(degree) \
     ]
 
     v(1fr)
