@@ -13,7 +13,10 @@
 // extensions
 #import "extensions/glossary.typ": acr-theme
 #import "extensions/outrageous.typ": create-outline, i-figured, outline-presets
-#import "extensions/marginalia.typ": marginalia, sidefigure, sidenote
+#import "extensions/marginalia.typ": (
+    comment, marginalia, marginalia-quote, normal-figure, sideimage, sidenote,
+    wide-figure, wideblock,
+)
 #import "extensions/tblr.typ": booktbl, tabular
 
 
