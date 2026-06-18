@@ -1,12 +1,18 @@
-#import "sections/outlines.typ": *
-#import "sections/glossary.typ": acr-theme
+// sections
 #import "sections/titlepage.typ": titlepage
 #import "sections/generic.typ": generic-section
 #import "sections/colophon.typ": colophon
 
-#import "utils/block-quote.typ": block-quote
+// utils
 #import "utils/epigraph.typ": epigraph
-#import "utils/tables.typ": *
+#import "utils/block-quote.typ": block-quote
+
+// extensions
+#import "extensions/glossary.typ": acr-theme
+#import "extensions/outrageous.typ": i-figured, create-outline, outline-presets
+#import "extensions/marginalia.typ": marginalia, sidenote, sidefigure
+#import "extensions/tblr.typ": tabular, booktbl
+
 
 #let thesis(body) = {
     set text(size: 11pt, number-type: "old-style")
@@ -104,6 +110,15 @@
     // apply the show rules (these can be customized)
     show heading: i-figured.reset-counters
     show figure: i-figured.show-figure
+
+    // marginalia setup
+    show: marginalia.setup.with(
+        book: true,
+        top: 4cm,
+        bottom: 2.88cm,
+        inner: (far: 2.75cm, width: 0cm, sep: 0cm),
+        outer: (far: 2.25cm, width: 4.7cm, sep: 0.8cm),
+    )
 
     set page(footer-descent: 1.5em)
     show smallcaps: it => text(tracking: 0.05em, it)

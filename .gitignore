@@ -1,7 +1,5 @@
-thesis-template-tex
 .direnv
 .pre-commit-config.yaml
-.zed
 
 # Till completion of project
 **/*.pdf

@@ -51,7 +51,7 @@
 
     [
         A thesis submitted to attain the degree of \
-        #caps(degree) \
+        #smallcaps(degree) \
     ]
 
     v(1fr)

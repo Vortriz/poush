@@ -1,33 +1,19 @@
 #import "../lib.typ": *
-
 #import "@preview/glossy:0.8.0": *
 
-#let info = (
-    title: "Some long and awesome title for your spectacular thesis on a very niche subject",
-    author: "John B Doe",
-    date: datetime(year: 2025, month: 6, day: 1),
-)
-
-#set document(
-    title: info.title,
-    author: info.author,
-    description: [An small and awesome description of the document.],
-    keywords: ("thesis", "science"),
-    date: info.date,
-)
-#set page(paper: "us-letter")
-
 #show: thesis
+#set page(paper: "us-letter")
+#show: init-glossary.with(yaml("chapters/glossary.yaml"))
 
-// Frontmatter -------------------------------------------
+
+// Frontmatter ------------------------------------
 
 #set page(numbering: "i")
 
-
 #titlepage(
-    title: info.title,
-    author: info.author,
-    date: info.date,
+    title: [Some long and awesome title for your spectacular thesis on a very niche subject],
+    author: "John B Doe",
+    date: datetime(year: 2025, month: 6, day: 1),
     degree: [Doctor of Sciences],
     supervisors: (
         (
@@ -91,21 +77,7 @@
 )
 
 
-#show: init-glossary.with(yaml("chapters/glossary.yaml"))
-
-#import "@preview/marginalia:0.3.1" as marginalia: note, notefigure, wideblock
-
-
-#show: marginalia.setup.with(
-    book: true,
-    top: 4cm,
-    bottom: 2.88cm,
-    inner: (far: 2.75cm, width: 0cm, sep: 0cm),
-    outer: (far: 2.25cm, width: 4.7cm, sep: 0.8cm),
-)
-#let note = note.with(side: "outer")
-
-// Body -----------------------------------------------
+// Body -------------------------------------------
 
 #set page(numbering: "1")
 #counter(page).update(1)
@@ -118,7 +90,7 @@
     [Cosmotheoros, Book II (1698)],
 )
 
-Picture the night sky. A black canvas, filled with thousands upon thousands of stars. The Milky Way alone, our home galaxy, is estimated to contain at least one hundred billion of them (see, e.g., Bok & Bok, 1974  , p. 23), most of them too faint to be seen by the unaided eye. Statistically speaking, each of these stars harbors at least one planet (Cassan et al., 2012  ). While speculations concerning this matter can be traced back for centuries, the roots of exoplanet science as an empirical discipline are found in the 1990s, a mere three decades ago #note[A detailed account of the discovery of the first planet in an orbit around a star that is not the Sun, and the discussions that ensued before the detection was accepted as such, has been compiled by Cenadelli & Bernagozzi (2015  ).]. Historically, much of the progress in the field has been driven by advances on the hardware side: larger telescopes with better adaptive optics, new instruments with higher resolution, or observations from space that eliminate the influence of the Earth’s atmosphere, have all contributed significantly to the fact that the detection of new exoplanets has almost become a routine afafir these days. In the near future, the next generation of ground-based telescopes will provide another major leap forward, possibly capturing the first image of a small, rocky exoplanet around a nearby star (Quanz et al., 2014  ). In addition to these hardware advances, however, there has also been a recent growth of interest in data processing, specifically in the application of machine learning (ML) methods. This very thesis may be taken as a case in point, but it is only one example of a larger trend that is illustrated in fig. 1.1. Machine learning for exoplanet science is a young but thriving area of research that is not only of interest to astrophysicists, but has even found its way into the limelight of a major ML conference in the form of two data challenges that were part of the NeurIPS competition track in 2022 and 2024 (see Changeat & Yip, 2023  ).
+Picture the night sky. A black canvas, filled with thousands upon thousands of stars. The Milky Way alone, our home galaxy, is estimated to contain at least one hundred billion of them (see, e.g., Bok & Bok, 1974  , p. 23), most of them too faint to be seen by the unaided eye. Statistically speaking, each of these stars harbors at least one planet (Cassan et al., 2012  ). While speculations concerning this matter can be traced back for centuries, the roots of exoplanet science as an empirical discipline are found in the 1990s, a mere three decades ago #sidenote[A detailed account of the discovery of the first planet in an orbit around a star that is not the Sun, and the discussions that ensued before the detection was accepted as such, has been compiled by Cenadelli & Bernagozzi (2015  ).]. Historically, much of the progress in the field has been driven by advances on the hardware side: larger telescopes with better adaptive optics, new instruments with higher resolution, or observations from space that eliminate the influence of the Earth’s atmosphere, have all contributed significantly to the fact that the detection of new exoplanets has almost become a routine afafir these days. In the near future, the next generation of ground-based telescopes will provide another major leap forward, possibly capturing the first image of a small, rocky exoplanet around a nearby star (Quanz et al., 2014  ). In addition to these hardware advances, however, there has also been a recent growth of interest in data processing, specifically in the application of machine learning (ML) methods. This very thesis may be taken as a case in point, but it is only one example of a larger trend that is illustrated in fig. 1.1. Machine learning for exoplanet science is a young but thriving area of research that is not only of interest to astrophysicists, but has even found its way into the limelight of a major ML conference in the form of two data challenges that were part of the NeurIPS competition track in 2022 and 2024 (see Changeat & Yip, 2023  ).
 
 One does not have to look far to fnid the reasons for this development. First, improvements in hardware are pushing the limits of what is possible (e.g., what types of planets are accessible to observations), but at that very limit, advancing our understanding of extrasolar planets—for example, about their formation and evolution—again requires extracting information from complex, noisy data. Second, better hardware itself creates new challenges, both in terms of the quantity and the quality of the data. If we think specifically about atmospheric characterization, missions such as ARIEL (Atmospheric Remote-sensing Infrared Exoplanet Large-survey; Tinetti et al., 2021  ) will drastically increase the number of exoplanet spectra to be analyzed, likely pushing traditional inference methods to their limit in terms of the computational cost; an issue that we discuss in chapters 4 and 5 of this thesis. Regarding the quality of the data, higher spectral resolution also means higher sensitivity to more and more physical and chemical processes in the atmospheres of the observed planets, which in turn increases the complexity (and thus the cost) of the theoretical models that are required to interpret the data. Another important point to consider is the development of new hardware. On the one hand, there is the development process itself, which may require optimizing key instrument parameters by simulating entire surveys for different configurations, which brings us back to the question of scalability. On the other hand, new hardware can be designed already with the idea that its data products can be analyzed with ML, which may affect what data (and metadata) are collected and stored in the first place. Given how much of a driver exoplanet science is for astronomical instrument design,2 this is a possibility that is worth taking seriously.
 
@@ -137,7 +109,7 @@ The appeal thus seems clear: ML has demonstrated exceptional potential in many f
     columns: 7,
     header-rows: 2,
     // combine header cells
-    cells((0, (1, 4)), colspan: 3, stroke: (bottom: 0.03em)),
+    tabular.cells((0, (1, 4)), colspan: 3, stroke: (bottom: 0.03em)),
     // table notes, remarks, and caption
     tabular.note((1, (1, 4)), [$m v$ is in kg·m².]),
     tabular.note((1, (3, 6)), [Time is in secs.]),
@@ -540,7 +512,7 @@ The appeal thus seems clear: ML has demonstrated exceptional potential in many f
 = Final Thoughts and Conclusions
 #pagebreak()
 
-// Backmatter -------------------------------------------
+// Backmatter -------------------------------------
 #set heading(numbering: none)
 
 #bibliography("references.bib", style: "apa"),
