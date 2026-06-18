@@ -12,8 +12,8 @@
     par-style: (justify: false),
 )
 
-// margin comment without numbering
-#let comment = note.with(
+// asides (they don't need numbering)
+#let aside = note.with(
     side: "outer",
     counter: none,
     text-style: (size: 8pt),
