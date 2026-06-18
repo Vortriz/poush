@@ -1,4 +1,4 @@
-#import "../utils/text.typ": caps
+#import "../utils.typ": caps
 
 #let acr-theme = (
     // Main section

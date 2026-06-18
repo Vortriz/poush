@@ -4,8 +4,8 @@
 #import "sections/colophon.typ": colophon
 
 // utils
-#import "utils/epigraph.typ": epigraph
-#import "utils/block-quote.typ": block-quote
+#import "elements/epigraph.typ": epigraph
+#import "elements/block-quote.typ": block-quote
 
 // extensions
 #import "extensions/glossary.typ": acr-theme

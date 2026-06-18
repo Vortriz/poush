@@ -1,7 +1,7 @@
 #import "@preview/outrageous:0.4.1"
 #import "@preview/i-figured:0.2.4"
 
-#import "../utils/text.typ": caps
+#import "../utils.typ": caps
 
 #let outline-fill = {
     set text(fill: black)
