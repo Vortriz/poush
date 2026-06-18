@@ -8,52 +8,71 @@
             url = "github:numtide/flake-utils";
             inputs.systems.follows = "systems";
         };
-        treefmt-nix = {
-            url = "github:numtide/treefmt-nix";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
         pre-commit-hooks = {
             url = "github:cachix/git-hooks.nix";
             inputs.nixpkgs.follows = "nixpkgs";
         };
     };
 
-    outputs = {
-        self,
-        nixpkgs,
-        flake-utils,
-        treefmt-nix,
-        pre-commit-hooks,
-        ...
-    }:
-        flake-utils.lib.eachDefaultSystem (system: let
-            pkgs = import nixpkgs {inherit system;};
-            treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
-        in {
-            formatter = treefmtEval.config.build.wrapper;
-
-            checks = {
-                pre-commit-check = pre-commit-hooks.lib.${system}.run {
-                    src = ./.;
-                    hooks = {
-                        flake-checker = {
-                            enable = true;
-                            after = ["treefmt-nix"];
+    outputs =
+        {
+            self,
+            nixpkgs,
+            flake-utils,
+            pre-commit-hooks,
+            ...
+        }:
+        flake-utils.lib.eachDefaultSystem (
+            system:
+            let
+                pkgs = import nixpkgs { inherit system; };
+            in
+            {
+                formatter = pkgs.treefmt.withConfig {
+                    runtimeInputs = with pkgs; [
+                        nixfmt
+                        typstyle
+                    ];
+                    settings.formatter = {
+                        nixfmt = {
+                            command = "nixfmt";
+                            includes = [ "*.nix" ];
+                            options = [ "--indent=4" ];
                         };
-                        treefmt = {
-                            enable = true;
-                            package = self.formatter.${system};
+                        typstyle = {
+                            command = "typstyle";
+                            includes = [ "*.typ" ];
+                            options = [
+                                "--indent-width"
+                                "4"
+                            ];
                         };
                     };
                 };
-            };
 
-            devShells.default = pkgs.mkShell {
-                inherit (self.checks.${system}.pre-commit-check) shellHook;
+                checks = {
+                    pre-commit-check = pre-commit-hooks.lib.${system}.run {
+                        src = ./.;
+                        hooks = {
+                            flake-checker = {
+                                enable = true;
+                                after = [ "treefmt-nix" ];
+                            };
+                            treefmt = {
+                                enable = true;
+                                package = self.formatter.${system};
+                            };
+                        };
+                    };
+                };
 
-                buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
+                devShells.default = pkgs.mkShell {
+                    inherit (self.checks.${system}.pre-commit-check) shellHook;
 
-                packages = [pkgs.typst];
-            };
-        });
+                    buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
+
+                    packages = [ pkgs.typst ];
+                };
+            }
+        );
 }
