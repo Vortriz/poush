@@ -1,21 +1,25 @@
-#import "../utils.typ": centered-geometry
+#import "../utils.typ": footer, header
 
 #let centered-section(title: none, body) = {
     set page(
-        margin: centered-geometry,
-        footer-descent: 0pt,
+        margin: (
+            top: 4.5cm,
+            bottom: 4cm,
+            inside: 3cm,
+            outside: 3cm,
+        ),
+        header: header,
+        footer: footer,
+        footer-descent: 1em,
     )
 
     if title != none {
-        heading(level: 1, numbering: none)[#title]
+        heading(level: 1, numbering: none, title)
     }
-
-    // set spacing to be the same as the leading
-    set par(spacing: 0.56em)
 
     body
 
     // hack to ensure that the page inserted is blank
-    set page(numbering: none)
+    set page(numbering: none, header: none)
     pagebreak(weak: true, to: "odd")
 }

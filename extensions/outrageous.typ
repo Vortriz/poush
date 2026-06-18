@@ -1,7 +1,6 @@
-#import "@preview/outrageous:0.4.1"
-#import "@preview/i-figured:0.2.4"
-
-#import "../utils.typ": caps, centered-geometry
+#import "../deps.typ": i-figured, outrageous
+#import "../utils.typ": caps
+#import "../sections/centered.typ": centered-section
 
 #let outline-fill = {
     set text(fill: black)
@@ -13,7 +12,7 @@
 #let outline-presets = (
     toc: (
         font-weight: ("bold", "regular"),
-        vspace: (1.75em, none),
+        vspace: (1.6em, none),
         font: (auto,),
         fill: (none, outline-fill),
         gap: (1em,),
@@ -42,7 +41,7 @@
     ),
     figures: (
         font-weight: (auto,),
-        vspace: (none,),
+        vspace: (0.6em, none),
         font: (auto,),
         fill: (outline-fill,),
         gap: (auto,),
@@ -68,11 +67,7 @@
     preset: outline-presets.figures,
     title: [List of Figures],
     kind: image,
-) = {
-    set page(
-        margin: centered-geometry,
-        footer-descent: 0.5em,
-    )
+) = centered-section({
     show outline: set heading(outlined: true)
     show outline.entry: outrageous.show-entry.with(..preset)
     let parts-and-headings = figure
@@ -86,8 +81,4 @@
         // because we want typst to automatically set it based on text language
         outline(target: parts-and-headings)
     }
-
-    // hack to ensure that the page inserted is blank
-    set page(numbering: none)
-    pagebreak(weak: true, to: "odd")
-}
+})

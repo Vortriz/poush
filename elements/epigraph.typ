@@ -6,7 +6,7 @@
     align(right)[
         #block(
             width: 47%,
-            above: 2em,
+            above: 1em,
             below: 2em,
             [
                 #align(left, quote)

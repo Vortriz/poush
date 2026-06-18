@@ -1,3 +1,6 @@
+// deps
+#import "deps.typ": hydra
+
 // sections
 #import "sections/titlepage.typ": titlepage
 #import "sections/centered.typ": centered-section
@@ -8,7 +11,7 @@
 #import "elements/block-quote.typ": block-quote
 
 // utils
-#import "utils.typ": *
+#import "utils.typ": caps, footer, header
 
 // extensions
 #import "extensions/glossary.typ": acr-theme
@@ -72,7 +75,7 @@
                 ..styled-heading,
             )
         }
-        v(2em)
+        v(2.25em)
     }
 
     // level 2 headings are uppercased
@@ -126,7 +129,14 @@
         outer: (far: 2.25cm, width: 4.7cm, sep: 0.8cm),
     )
 
-    set page(footer-descent: 1.5em)
+    set page(
+        header: {
+            show: wideblock.with(side: "both")
+            header
+        },
+        footer: footer,
+        footer-descent: 1em,
+    )
     show smallcaps: it => text(tracking: 0.05em, it)
     set par(
         justify: true,

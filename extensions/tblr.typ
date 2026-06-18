@@ -1,4 +1,4 @@
-#import "@preview/tblr:0.5.0" as tabular
+#import "../deps.typ": tabular
 
 #let booktbl = tabular.tblr.with(
     stroke: none,

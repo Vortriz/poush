@@ -1,4 +1,5 @@
-#import "../utils.typ": caps, centered-geometry
+#import "../utils.typ": caps
+#import "centered.typ": centered-section
 
 #let titlepage(
     // Title of the thesis.
@@ -24,11 +25,7 @@
     ),
     // The name of your institution.
     institution: none,
-) = {
-    set page(
-        margin: centered-geometry,
-        numbering: none,
-    )
+) = centered-section({
     set align(center)
     show smallcaps: it => text(size: 1.1em, it)
 
@@ -74,8 +71,4 @@
     if institution != none [
         #smallcaps(institution)
     ]
-
-    // hack to ensure that the page inserted is blank
-    set page(numbering: none)
-    pagebreak(weak: true, to: "odd")
-}
+})

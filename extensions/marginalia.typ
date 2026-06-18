@@ -1,4 +1,4 @@
-#import "@preview/marginalia:0.3.1" as marginalia: note, notefigure, wideblock
+#import "../deps.typ": marginalia, note, notefigure, wideblock
 
 // regular margin note
 #let sidenote = note.with(
