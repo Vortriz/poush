@@ -35,7 +35,6 @@
 
 // Abstract
 #centered-section(title: "Abstract")[
-    #set par(spacing: 0.56em)
 
     // #lorem(700)
     Over the past thirty years, exoplanet science—that is, the study of planets beyond our Solar System— has become one of the most thriving and dynamic subfields of astronomy. At the time of this writing, close to 6000 extrasolar planets have been discovered through various methods, and measurements from groundbreaking instruments such as the James Webb Space Telescope (JWST) allow us to study their properties in unprecedented detail. Complementing these hardware advances, there has recently been an increased interest in methods for processing observational data, especially through the use of machine learning (ML). This should not come as a surprise, considering the success that ML has had in other domains, and given that both the detection and characterization of exoplanets are fundamentally challenging inference problems which require the extraction of information from complex, noisy data that push traditional analysis techniques to their limits.
@@ -526,11 +525,9 @@ The appeal thus seems clear: ML has demonstrated exceptional potential in many f
 ]
 
 #centered-section(title: "Used Software & Generative AI Declaration")[
-    #set par(spacing: 0.56em)
     #lorem(200)
 ]
 
 #centered-section(title: "Acknowledgements")[
-    #set par(spacing: 0.56em)
     #lorem(300)
 ]
