@@ -1,0 +1,1 @@
+Thesis template based on [Timothy Gebhard's doctoral thesis](https://www.research-collection.ethz.ch/entities/publication/c4efc965-59ad-44c6-aa9c-92e4f0b32e48), ported to Typst.
