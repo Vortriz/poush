@@ -9,35 +9,35 @@
     - [x] frontmatter
     - [x] titlepage
     - [x] colophon
-- [ ] preamble
+- [x] preamble
     - [x] acronyms
     - [x] ~algorithms~ user can import package if needed
     - [x] ~biblatex~ [Pergamon](https://typst.app/universe/package/pergamon)
-    - [ ] boxes*
+    - [x] boxes*
         - [x] blockquote
-        - [ ] NewMaterialBox
-        - [ ] citebox
-    - [ ] captions*
+        - [x] ~NewMaterialBox~ idk what this is supposed to be
+        - [x] ~citebox~ idk what this is supposed to be
+    - [x] captions*
     - [x] code - [codly](https://typst.app/universe/package/codly)
-    - [ ] environments
-      - [ ] "further reading" env
+    - [x] environments
+      - [x] ~"further reading" env~ not needed
     - [x] figures
     - [x] float
-    - [ ] geometry
-      - [ ] normal*
-      - [ ] centered
+    - [x] geometry
+      - [x] normal*
+      - [x] centered
     - [x] headings*
     - [x] hyperlink styling
         - [x] ~cleverref~ [smartaref](https://typst.app/universe/package/smartaref)
     - [x] hyphenation
     - [x] journals
-    - [ ] margins
+    - [x] margins
     - [x] math
-    - [ ] pagestyles
+    - [x] pagestyles
         - [x] level 1 header
-        - [ ] normal page
-            - [ ] page numbering position
-        - [ ] color inverted page
+        - [x] normal page
+            - [x] page numbering position
+        - [x] ~color inverted page~ just flip the damn colors manually
         - [x] header
     - [x] tables
         - [x] ~booktabs~ can use [booktabs](https://typst.app/universe/package/booktabs) or just plain `table.hline` or `table.vline`
@@ -48,9 +48,9 @@
         - [x] oldstyle numbers
     - [x] units
         - [x] ~siunitx~ [unify](https://typst.app/universe/package/unify)
-    - [ ] utils
+    - [x] utils
         - [x] tocloft - formatting table of contents, list of figures, and list of tables
-        - [ ] etoc - mini toc at start of chapters
+        - [x] ~etoc - mini toc at start of chapters~ can be done with [suboutline](https://typst.app/universe/package/suboutline) if anyone want to use it
     - [x] ~warnings~ useless
 - [ ] rewrite the sample thesis.typ
 - [x] ability to put custom pages in the frontmatter and backmatter to comply with university requirements
