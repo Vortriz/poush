@@ -102,6 +102,7 @@
 
     // level 4 headings are italicized
     show heading.where(level: 4): set block(above: 2.25em, below: 1.25em)
+    show heading.where(level: 4): set heading(bookmarked: false)
     show heading.where(level: 4): set text(
         style: "italic",
         weight: "regular",
@@ -109,9 +110,12 @@
     )
 
     // level 5 headings are run-in
+    show heading.where(level: 5): set heading(bookmarked: false)
     show heading.where(level: 5): it => (
         block(below: 0em) + box(inset: (right: 0.8em), it.body)
     )
+
+    show heading.where(level: 6): set heading(bookmarked: false)
 
     // show to table caption on top with left alignment and bold supplement
     show figure.where(kind: "i-figured-table"): tbl => {
