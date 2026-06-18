@@ -34,19 +34,18 @@
 #colophon[This dissertation was prepared with Typst using #link("https://github.com/Vortriz/poush", [Poush]) template. The main text is set in Libertinus Serif. The monospace font is `DejaVu Sans Mono`.]
 
 // Abstract
-#generic-section(
-    title: [Abstract],
-    body: [
-        // #lorem(700)
-        Over the past thirty years, exoplanet science—that is, the study of planets beyond our Solar System— has become one of the most thriving and dynamic subfields of astronomy. At the time of this writing, close to 6000 extrasolar planets have been discovered through various methods, and measurements from groundbreaking instruments such as the James Webb Space Telescope (JWST) allow us to study their properties in unprecedented detail. Complementing these hardware advances, there has recently been an increased interest in methods for processing observational data, especially through the use of machine learning (ML). This should not come as a surprise, considering the success that ML has had in other domains, and given that both the detection and characterization of exoplanets are fundamentally challenging inference problems which require the extraction of information from complex, noisy data that push traditional analysis techniques to their limits.
+#centered-section(title: "Abstract")[
+    #set par(spacing: 0.56em)
 
-        In this thesis, we present three contributions to this young research field at the intersection of exoplanet science and ML, which trace an arc from the detection of extrasolar planets with the help of ML to the characterization of their atmospheres. The first study addresses the problem of post-processing data from high-contrast imaging. We show how we can combine physical domain knowledge about the data with techniques from the field of causal inference to learn pixel-wise models for the systematic noise that allow us to denoise the data and thus reveal previously unseen companions. We demonstrate the applicability of our approach on four publicly available datasets from the VLT/NACO instrument. A particular innovation of our approach is the explicit incorporation of the external observing conditions, which experiments improves the denoising performance.
+    // #lorem(700)
+    Over the past thirty years, exoplanet science—that is, the study of planets beyond our Solar System— has become one of the most thriving and dynamic subfields of astronomy. At the time of this writing, close to 6000 extrasolar planets have been discovered through various methods, and measurements from groundbreaking instruments such as the James Webb Space Telescope (JWST) allow us to study their properties in unprecedented detail. Complementing these hardware advances, there has recently been an increased interest in methods for processing observational data, especially through the use of machine learning (ML). This should not come as a surprise, considering the success that ML has had in other domains, and given that both the detection and characterization of exoplanets are fundamentally challenging inference problems which require the extraction of information from complex, noisy data that push traditional analysis techniques to their limits.
 
-        In the second study, we turn to the problem of atmospheric retrieval; that is, the inference of parameters such as the chemical composition from an observed exoplanet spectrum. We show that we can use neural networks to replace a key component in the standard Bayesian inference pipeline; namely the parameterization of the thermal structure. This reduces the number of parameters needed to describe an atmosphere, thus speeding up retrievals or freeing up computational resources for other parameters of interest. In addition, it effectively allows performing atmospheric retrieval with pressure–temperature profiles from self-consistent atmospheric models, which are usually too computationally expensive for Bayesian parameter inference.
+    In this thesis, we present three contributions to this young research field at the intersection of exoplanet science and ML, which trace an arc from the detection of extrasolar planets with the help of ML to the characterization of their atmospheres. The first study addresses the problem of post-processing data from high-contrast imaging. We show how we can combine physical domain knowledge about the data with techniques from the field of causal inference to learn pixel-wise models for the systematic noise that allow us to denoise the data and thus reveal previously unseen companions. We demonstrate the applicability of our approach on four publicly available datasets from the VLT/NACO instrument. A particular innovation of our approach is the explicit incorporation of the external observing conditions, which experiments improves the denoising performance.
 
-        Finally, in the third contribution, we completely replace the traditional atmospheric characterization workflow using stochastic samplers with a simulation-based inference approach based on continuous normalizing flows. We combine this approach with importance sampling to ensure the reliability of our results and show that we can learn models that amortize over different assumptions for the noise in the data, thus boosting the practical applicability of our method. We demonstrate this practical applicability and validate it against traditional alternatives through extensive experiments on simulated emission spectra of a gas giant-type exoplanet.
-    ],
-)
+    In the second study, we turn to the problem of atmospheric retrieval; that is, the inference of parameters such as the chemical composition from an observed exoplanet spectrum. We show that we can use neural networks to replace a key component in the standard Bayesian inference pipeline; namely the parameterization of the thermal structure. This reduces the number of parameters needed to describe an atmosphere, thus speeding up retrievals or freeing up computational resources for other parameters of interest. In addition, it effectively allows performing atmospheric retrieval with pressure–temperature profiles from self-consistent atmospheric models, which are usually too computationally expensive for Bayesian parameter inference.
+
+    Finally, in the third contribution, we completely replace the traditional atmospheric characterization workflow using stochastic samplers with a simulation-based inference approach based on continuous normalizing flows. We combine this approach with importance sampling to ensure the reliability of our results and show that we can learn models that amortize over different assumptions for the noise in the data, thus boosting the practical applicability of our method. We demonstrate this practical applicability and validate it against traditional alternatives through extensive experiments on simulated emission spectra of a gas giant-type exoplanet.
+]
 
 #set outline(depth: 2)
 
@@ -515,19 +514,23 @@ The appeal thus seems clear: ML has demonstrated exceptional potential in many f
 // Backmatter -------------------------------------
 #set heading(numbering: none)
 
-#bibliography("references.bib", style: "apa"),
+#centered-section[
+    #bibliography("references.bib", style: "apa")
+]
 
-#glossary(
-    title: "Acronyms & Abbreviations",
-    theme: acr-theme,
-)
+#centered-section[
+    #glossary(
+        title: "Acronyms & Abbreviations",
+        theme: acr-theme,
+    )
+]
 
-#generic-section(
-    title: [Used Software & Generative AI Declaration],
-    body: [#lorem(200)],
-)
+#centered-section(title: "Used Software & Generative AI Declaration")[
+    #set par(spacing: 0.56em)
+    #lorem(200)
+]
 
-#generic-section(
-    title: [Acknowledgements],
-    body: [#lorem(300)],
-)
+#centered-section(title: "Acknowledgements")[
+    #set par(spacing: 0.56em)
+    #lorem(300)
+]

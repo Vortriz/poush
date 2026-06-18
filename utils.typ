@@ -4,3 +4,12 @@
     spacing: 0.2em,
     upper(it),
 )
+
+// margins for centered page geometry
+// used in frontmatter and backmatter
+#let centered-geometry = (
+    top: 4.5cm,
+    bottom: 3.5cm,
+    inside: 3cm,
+    outside: 3cm,
+)

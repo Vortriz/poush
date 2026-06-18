@@ -1,14 +1,14 @@
-#let generic-section(title: none, body: none) = {
+#import "../utils.typ": centered-geometry
+
+#let centered-section(title: none, body) = {
     set page(
-        margin: (
-            top: 4.5cm,
-            bottom: 3.5cm,
-            inside: 3cm,
-            outside: 3cm,
-        ),
+        margin: centered-geometry,
         footer-descent: 0pt,
     )
-    heading(level: 1, numbering: none)[#title]
+
+    if title != none {
+        heading(level: 1, numbering: none)[#title]
+    }
 
     // set spacing to be the same as the leading
     set par(spacing: 0.56em)

@@ -1,4 +1,4 @@
-#import "../utils.typ": caps
+#import "../utils.typ": caps, centered-geometry
 
 #let titlepage(
     // Title of the thesis.
@@ -26,12 +26,7 @@
     institution: none,
 ) = {
     set page(
-        margin: (
-            top: 4.5cm,
-            bottom: 3.5cm,
-            inside: 3cm,
-            outside: 3cm,
-        ),
+        margin: centered-geometry,
         numbering: none,
     )
     set align(center)

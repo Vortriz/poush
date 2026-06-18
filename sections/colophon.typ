@@ -1,12 +1,9 @@
+#import "../utils.typ": centered-geometry
+
 #let colophon(body) = {
     set text(size: 10pt)
     set page(
-        margin: (
-            top: 4.5cm,
-            bottom: 3.5cm,
-            inside: 3cm,
-            outside: 3cm,
-        ),
+        margin: centered-geometry,
         numbering: none,
     )
     set par(first-line-indent: 0em)

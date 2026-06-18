@@ -1,11 +1,14 @@
 // sections
 #import "sections/titlepage.typ": titlepage
-#import "sections/generic.typ": generic-section
+#import "sections/centered.typ": centered-section
 #import "sections/colophon.typ": colophon
 
-// utils
+// elements
 #import "elements/epigraph.typ": epigraph
 #import "elements/block-quote.typ": block-quote
+
+// utils
+#import "utils.typ": *
 
 // extensions
 #import "extensions/glossary.typ": acr-theme
@@ -14,7 +17,7 @@
 #import "extensions/tblr.typ": booktbl, tabular
 
 
-#let thesis(body) = {
+#let thesis = doc => {
     set text(size: 11pt, number-type: "old-style")
 
     set heading(numbering: "1.1")
@@ -127,5 +130,5 @@
         leading: 0.56em,
         first-line-indent: 2em,
     )
-    body
+    doc
 }
