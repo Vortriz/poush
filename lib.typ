@@ -24,7 +24,10 @@
 
 
 #let thesis = doc => {
-    set text(size: 11pt, number-type: "old-style")
+    set text(
+        size: 11pt,
+        number-type: "old-style",
+    )
 
     set heading(numbering: "1.1")
     set enum(indent: 1.1em)
@@ -39,13 +42,13 @@
     }
 
     // for spacing between heading numbering and body
-    show heading: it => {
+    show heading: it => block({
         if it.numbering != none {
             counter(heading).display()
             h(1em)
         }
         it.body
-    }
+    })
 
     // level 1 heading style (sections)
     show heading.where(level: 1): set heading(supplement: [Chapter])
@@ -79,30 +82,36 @@
     }
 
     // level 2 headings are uppercased
+    show heading.where(level: 2): set block(above: 2.5em, below: 1.5em)
     show heading.where(level: 2): it => {
-        set text(weight: "regular")
-        upper(it)
+        set text(
+            size: 12pt,
+            weight: "regular",
+        )
+        caps(it)
     }
 
     // level 3 headings are slightly enlarged and italicized
+    show heading.where(level: 3): set block(above: 2em, below: 1.25em)
     show heading.where(level: 3): set text(
         size: 12pt,
         style: "italic",
         weight: "regular",
+        tracking: 0.01em,
     )
 
     // level 4 headings are italicized
+    show heading.where(level: 4): set block(above: 2.25em, below: 1.25em)
     show heading.where(level: 4): set text(
         style: "italic",
         weight: "regular",
-        tracking: 0.015em,
+        tracking: 0.01em,
     )
 
     // level 5 headings are run-in
-    show heading.where(level: 5): it => {
-        set text(weight: "bold")
-        it.body + h(0.5em)
-    }
+    show heading.where(level: 5): it => (
+        block(below: 0em) + box(inset: (right: 0.8em), it.body)
+    )
 
     // show to table caption on top with left alignment and bold supplement
     show figure.where(kind: "i-figured-table"): tbl => {
@@ -141,7 +150,8 @@
     set par(
         justify: true,
         leading: 0.56em,
-        first-line-indent: 2em,
+        spacing: 1.1em,
+        first-line-indent: 1.5em,
     )
     doc
 }
