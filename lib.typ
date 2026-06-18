@@ -9,9 +9,9 @@
 
 // extensions
 #import "extensions/glossary.typ": acr-theme
-#import "extensions/outrageous.typ": i-figured, create-outline, outline-presets
-#import "extensions/marginalia.typ": marginalia, sidenote, sidefigure
-#import "extensions/tblr.typ": tabular, booktbl
+#import "extensions/outrageous.typ": create-outline, i-figured, outline-presets
+#import "extensions/marginalia.typ": marginalia, sidefigure, sidenote
+#import "extensions/tblr.typ": booktbl, tabular
 
 
 #let thesis(body) = {

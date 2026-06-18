@@ -43,6 +43,7 @@
                             command = "typstyle";
                             includes = [ "*.typ" ];
                             options = [
+                                "--inplace"
                                 "--indent-width"
                                 "4"
                             ];
