@@ -1,5 +1,5 @@
 #import "../lib.typ": *
-#import "@preview/glossy:0.8.0": *
+#import "@preview/glossy:0.9.1": *
 
 #show: thesis
 #set page(paper: "us-letter")
