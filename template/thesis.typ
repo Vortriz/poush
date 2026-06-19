@@ -1,4 +1,4 @@
-#import "../lib.typ": *
+#import "../src/lib.typ": *
 #import "@preview/glossy:0.9.1": *
 
 #show: thesis
