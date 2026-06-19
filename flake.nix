@@ -12,6 +12,7 @@
             url = "github:cachix/git-hooks.nix";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+        utpm.url = "github:typst-community/utpm";
     };
 
     outputs =
@@ -21,7 +22,7 @@
             flake-utils,
             pre-commit-hooks,
             ...
-        }:
+        }@inputs:
         flake-utils.lib.eachDefaultSystem (
             system:
             let
@@ -72,7 +73,14 @@
 
                     buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
 
-                    packages = [ pkgs.typst ];
+                    packages =
+                        with pkgs;
+                        [
+                            typst
+                        ]
+                        ++ [
+                            inputs.utpm.packages.${system}.default
+                        ];
                 };
             }
         );
