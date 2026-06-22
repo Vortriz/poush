@@ -43,6 +43,7 @@
 
     // for spacing between heading numbering and body
     show heading: it => block({
+        set par(justify: false)
         if it.numbering != none {
             counter(heading).display()
             h(1em)
@@ -52,7 +53,8 @@
 
     // level 1 heading style (sections)
     show heading.where(level: 1): set heading(supplement: [Chapter])
-    show heading.where(level: 1): it => context {
+    show heading.where(level: 1): set block(below: 2.75em)
+    show heading.where(level: 1): it => {
         pagebreak(weak: true, to: "odd")
 
         set align(center)
@@ -68,7 +70,7 @@
         if it.numbering == none {
             stack(..styled-heading)
         } else {
-            let num = counter(heading).get().first()
+            let num = context counter(heading).get().first()
             stack(
                 text(
                     size: 12pt,
@@ -78,7 +80,6 @@
                 ..styled-heading,
             )
         }
-        v(2.25em)
     }
 
     // level 2 headings are uppercased
