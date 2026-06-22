@@ -1,6 +1,6 @@
 #import "../utils.typ": footer, header
 
-#let centered-section(title: none, body) = {
+#let centered-page = body => {
     set page(
         margin: (
             top: 4.5cm,
@@ -13,6 +13,10 @@
         footer-descent: 1em,
     )
 
+    body
+}
+
+#let centered-section(title: none, body) = centered-page({
     if title != none {
         heading(level: 1, numbering: none, title)
     }
@@ -22,4 +26,4 @@
     // hack to ensure that the page inserted is blank
     set page(numbering: none, header: none)
     pagebreak(weak: true, to: "odd")
-}
+})

@@ -3,7 +3,7 @@
 
 // sections
 #import "sections/titlepage.typ": titlepage
-#import "sections/centered.typ": centered-section
+#import "sections/centered.typ": centered-page, centered-section
 #import "sections/colophon.typ": colophon
 
 // elements

@@ -104,8 +104,6 @@ The appeal thus seems clear: ML has demonstrated exceptional potential in many f
 
 @bb is nice.
 
-@smit54 is some reference.
-
 #pagebreak()
 #booktbl(
     columns: 7,
@@ -172,6 +170,10 @@ The appeal thus seems clear: ML has demonstrated exceptional potential in many f
     3. #lorem(80)
 ]
 #figure([a], caption: [Steps of compilation. (altered)])
+#centered-page[
+    This is a centered page.
+    #lorem(500)
+]
 #pagebreak()
 == Publications
 #figure(
