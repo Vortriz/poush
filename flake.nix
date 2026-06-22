@@ -81,6 +81,8 @@
                         ++ [
                             inputs.utpm.packages.${system}.default
                         ];
+
+                    TYPST_IGNORE_SYSTEM_FONTS = true;
                 };
             }
         );
