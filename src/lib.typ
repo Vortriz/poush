@@ -55,7 +55,10 @@
     show heading.where(level: 1): set heading(supplement: [Chapter])
     show heading.where(level: 1): set block(below: 2.75em)
     show heading.where(level: 1): it => {
-        pagebreak(weak: true, to: "odd")
+        {
+            set page(header: none)
+            pagebreak(weak: true, to: "odd")
+        }
 
         set align(center)
         set line(length: 100%, stroke: 0.5pt)
