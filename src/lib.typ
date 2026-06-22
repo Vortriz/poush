@@ -42,14 +42,16 @@
     }
 
     // for spacing between heading numbering and body
+    // for heading level > 2
     show heading: it => block({
-        set par(justify: false)
         if it.numbering != none {
             counter(heading).display()
             h(1em)
         }
         it.body
     })
+
+    show heading: set par(justify: false)
 
     // level 1 heading style (sections)
     show heading.where(level: 1): set heading(supplement: [Chapter])
