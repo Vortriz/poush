@@ -45,10 +45,14 @@
     // for heading level > 2
     show heading: it => block({
         if it.numbering != none {
-            counter(heading).display()
-            h(1em)
+            grid(
+                columns: (auto, 1fr),
+                inset: (right: 1em),
+                counter(heading).display(), it.body,
+            )
+        } else {
+            it.body
         }
-        it.body
     })
 
     show heading: set par(justify: false)
