@@ -1,5 +1,5 @@
 {
-    description = "A very basic flake";
+    description = "Flake for the Poush Template";
 
     inputs = {
         nixpkgs.url = "github:nixos/nixpkgs?ref=nixpkgs-unstable";
@@ -82,7 +82,8 @@
                             inputs.utpm.packages.${system}.default
                         ];
 
-                    TYPST_IGNORE_SYSTEM_FONTS = true;
+                    TYPST_IGNORE_SYSTEM_FONTS = "true";
+                    # Also set "tinymist.systemFonts": false
                 };
             }
         );
