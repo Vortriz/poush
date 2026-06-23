@@ -41,21 +41,38 @@
         it
     }
 
-    // for spacing between heading numbering and body
-    // for heading level > 2
-    show heading: it => block({
+    // not to justify block headings
+    show selector.or(
+        heading.where(level: 1),
+        heading.where(level: 2),
+        heading.where(level: 3),
+        heading.where(level: 4),
+    ): set par(justify: false)
+
+    // spacing between heading numbering and body
+    show selector.or(
+        heading.where(level: 2),
+        heading.where(level: 3),
+        heading.where(level: 4),
+    ): it => block({
         if it.numbering != none {
-            grid(
-                columns: (auto, 1fr),
-                inset: (right: 1em),
-                counter(heading).display(), it.body,
+            stack(
+                dir: ltr,
+                spacing: 1em,
+                counter(heading).display(),
+                it.body,
             )
         } else {
             it.body
         }
     })
 
-    show heading: set par(justify: false)
+    // no bookmarks for heading level > 3
+    show selector.or(
+        heading.where(level: 4),
+        heading.where(level: 5),
+        heading.where(level: 6),
+    ): set heading(bookmarked: false)
 
     // level 1 heading style (sections)
     show heading.where(level: 1): set heading(supplement: [Chapter])
@@ -112,7 +129,6 @@
 
     // level 4 headings are italicized
     show heading.where(level: 4): set block(above: 2.25em, below: 1.25em)
-    show heading.where(level: 4): set heading(bookmarked: false)
     show heading.where(level: 4): set text(
         style: "italic",
         weight: "regular",
@@ -120,12 +136,9 @@
     )
 
     // level 5 headings are run-in
-    show heading.where(level: 5): set heading(bookmarked: false)
     show heading.where(level: 5): it => (
         block(below: 0em) + box(inset: (right: 0.8em), it.body)
     )
-
-    show heading.where(level: 6): set heading(bookmarked: false)
 
     // show to table caption on top with left alignment and bold supplement
     show figure.where(kind: "i-figured-table"): tbl => {
