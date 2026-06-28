@@ -18,23 +18,24 @@
         gap: (1em,),
         fill-right-pad: 0em,
         fill-align: true,
-        prefix-transform: (lvl, prefix) => {
-            for i in "IVXLCDM" {
-                if type(prefix) == content and prefix.text.contains(i) {
-                    []
-                }
+
+        body-transform: (level, prefix, body) => {
+            if body.func() == metadata {
+                let val = body.value
+                v(1em)
+                text(
+                    size: 9pt,
+                    weight: 750,
+                    tracking: 0.1em,
+                )[
+                    #box(width: 2em)[#smallcaps(upper(val.num))]
+                    #smallcaps(upper(val.title))
+                ]
+            } else {
+                body
             }
         },
-        body-transform: (lvl, prefix, body) => {
-            for i in "IVXLCDM" {
-                if type(prefix) == content and prefix.text.contains(i) {
-                    set text(weight: "bold", size: 0.8em)
-                    v(0pt)
-                    h(-2em)
-                    caps([#prefix #h(1em) #body])
-                }
-            }
-        },
+
         page-transform: (lvl, num) => {
             text(fill: black, num)
         },
@@ -53,7 +54,7 @@
                 number.text.ends-with(regex("[^\d]1[^\d]*"))
                     and not number.text.starts-with("1")
             ) {
-                v(10pt)
+                v(1em)
             }
             box[#v#number]
         },

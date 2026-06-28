@@ -79,10 +79,18 @@
 #set page(numbering: "1")
 #counter(page).update(1)
 
+#create-part("Prelude")
+
 #include "chapters/introduction.typ"
 #include "chapters/detection.typ"
+
+#create-part("Main contributions")
+
 #include "chapters/retrieval.typ"
 #include "chapters/sbi.typ"
+
+#create-part("Epilog")
+
 #include "chapters/results.typ"
 #include "chapters/conclusion.typ"
 

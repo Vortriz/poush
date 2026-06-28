@@ -5,6 +5,7 @@
 #import "sections/titlepage.typ": titlepage
 #import "sections/centered.typ": centered-page, centered-section
 #import "sections/colophon.typ": colophon
+#import "sections/part.typ": create-part
 
 // elements
 #import "elements/epigraph.typ": epigraph
@@ -83,28 +84,52 @@
             pagebreak(weak: true, to: "odd")
         }
 
-        set align(center)
-        set line(length: 100%, stroke: 0.5pt)
-        set stack(dir: ttb, spacing: 1em)
+        if it.body.func() == metadata {
+            let val = it.body.value
+            centered-page[
+                #set page(footer: none)
+                #set align(center + horizon)
+                #set stack(spacing: 0.75em)
+                #show: smallcaps
 
-        let styled-heading = (
-            line(),
-            text(size: 20.74pt, it.body),
-            line(),
-        )
-
-        if it.numbering == none {
-            stack(..styled-heading)
+                #stack(
+                    upper(
+                        text(size: 9pt, tracking: 0.1em, weight: "bold")[
+                            Part #val.num.slice(0, -1)
+                        ],
+                    ),
+                    line(length: 10%, stroke: 0.025em),
+                    upper(
+                        text(size: 14pt, tracking: 0.1em, weight: "regular")[
+                            #val.title
+                        ],
+                    ),
+                )
+            ]
         } else {
-            let num = context counter(heading).get().first()
-            stack(
-                text(
-                    size: 12pt,
-                    weight: "regular",
-                    smallcaps[#it.supplement #num],
-                ),
-                ..styled-heading,
+            set align(center)
+            set line(length: 100%, stroke: 0.5pt)
+            set stack(dir: ttb, spacing: 1em)
+
+            let styled-heading = (
+                line(),
+                text(size: 20.74pt, it.body),
+                line(),
             )
+
+            if it.numbering == none {
+                stack(..styled-heading)
+            } else {
+                let num = context counter(heading).get().first()
+                stack(
+                    text(
+                        size: 12pt,
+                        weight: "regular",
+                        smallcaps[#it.supplement #num],
+                    ),
+                    ..styled-heading,
+                )
+            }
         }
     }
 
