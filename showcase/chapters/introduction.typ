@@ -12,16 +12,17 @@ Quantum physics is the noble art of solving incredibly complex equations for sys
 
 The double-slit experiment is the ultimate test of celestial shyness. If you shoot a stream of electrons through two slits, they form an interference pattern, behaving like waves. However, if you place a detector near the slits to watch them, they immediately panic, stop interfering, and behave like boring little bullets. This proves that the universe is inherently self-conscious and does not like being watched.#aside[Note that our simulator for quantum foundations has not been verified against any actual physical hardware, but the code compiles without warnings.]
 
-#normal-figure(
-    image("../images/double_slit.png", width: 90%),
-    caption: [The double-slit experiment results showing the interference pattern. It proves that light behaves like a wave when you aren't looking, and like a disappointed particle when you are.],
-) <fig:double_slit_intro>
-
 Quantum entanglement, which Einstein famously dismissed as 'spooky action at a distance,' describes the phenomenon where two particles are so deeply gossiping that they instantly agree on their state, even if they are separated by the length of the physics department corridor or the width of the galaxy. This is the equivalent of flipping a coin in Zürich and having your friend's coin in Tokyo instantly turn up tails, which violates every local traffic law of special relativity.
 
 To justify our massive research grants and satisfy our obsession with buzzwords, we have recently started throwing machine learning at quantum states. Quantum Machine Learning (QML) is the process of taking a neural network, which is just high-dimensional linear regression with a fancy name, and training it on quantum noise until it outputs something that looks like a wavefunction. This is called 'data-driven quantum discovery' because 'speculative curve-fitting' doesn't sound expensive enough on funding requests.
 
 Schrödinger's cat is the most famous animal abuse thought experiment in physics. We put a cat in a steel box with a vial of poison, a radioactive atom, and a hammer. According to quantum mechanics, before we open the box, the cat is simultaneously dead and alive in a linear combination of states. In reality, the cat is probably just very angry, but we write papers about it anyway to discuss the boundary between quantum and classical realities.
+
+#normal-figure(
+    image("../images/double_slit.png", width: 90%),
+    caption: "The double-slit experiment results showing the interference pattern. It proves that light behaves like a wave when you aren't looking, and like a disappointed particle when you are.",
+) <fig:double_slit_intro>
+
 
 Of course, all quantum experiments are plagued by decoherence, which is the universe's way of saying 'no quantum computer for you today.' Whenever a qubit collides with a stray photon or someone turns on a microwave in the break room, the wavefunction collapses and our beautiful superposition turns into classical garbage. Our main contribution in this thesis is developing neural networks to clean up this decoherence, hopefully without deleting the quantum information itself, though who would know the difference?
 
@@ -199,7 +200,7 @@ To build upon this point, In the following chapters, we provide a detailed accou
             )
         ],
     ),
-    caption: [The constant state of confusion and philosophical debate in quantum foundations.],
+    caption: [The constant state of confusion and philosophical debate in quantum foundations. #lorem(55)],
 ) <fig:quantum_foundations_flow>
 
 As any sensible astrologer would agree, However, the reconstruction of these quantum states is a highly degenerate inverse problem. Multiple combinations of density matrices and measurement operators can produce similar experimental signatures. Traditional quantum state tomography (QST) pipelines rely on maximum likelihood estimation coupled with iterative solvers. While robust, these methods are computationally expensive, often requiring hours of CPU time for just a few qubits.

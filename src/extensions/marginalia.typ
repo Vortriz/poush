@@ -64,9 +64,18 @@
         shift: "avoid",
         keep-order: true,
     )
-
-    figure(..kwargs)
+    place(
+        top,
+        float: true,
+        clearance: 3em,
+        figure(..kwargs),
+    )
 }
 
 // wide figures will span into the margin, and their captions will be at the normal position (below the figure)
-#let wide-figure(..kwargs) = wideblock(figure(..kwargs))
+#let wide-figure(..kwargs) = place(
+    top,
+    float: true,
+    clearance: 3em,
+    wideblock(figure(..kwargs)),
+)
