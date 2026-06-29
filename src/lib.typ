@@ -165,16 +165,26 @@
         block(below: 0em) + box(inset: (right: 0.8em), it.body)
     )
 
-    // show to table caption on top with left alignment and bold supplement
-    show figure.where(kind: "i-figured-table"): tbl => {
-        set figure.caption(position: top)
-        show figure.caption: cpt => {
-            set align(left)
-            let heading_counter = context counter(heading).get().first()
-            let val = context cpt.counter.get().first()
-            strong[Table #heading_counter.#val: ] + cpt.body
+    // Caption formatting
+    show figure: it => {
+        // Tables have captions on top
+        if it.kind == "i-figured-table" {
+            set figure.caption(position: top)
+            it
+        } else {
+            it
         }
-        tbl
+    }
+    show figure.caption: it => {
+        set text(size: 9pt)
+        set par(justify: true)
+        set align(left)
+
+        let prefix-text = context {
+            let num = it.counter.get()
+            [#it.supplement #numbering(it.numbering, ..num)]
+        }
+        strong(prefix-text) + [: ] + it.body
     }
 
     // apply the show rules (these can be customized)
