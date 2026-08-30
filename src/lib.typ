@@ -30,7 +30,7 @@
         number-type: "old-style",
     )
 
-    set heading(numbering: "1.1")
+    set heading(numbering: "1.1.1.1")
     set enum(indent: 1.1em)
 
     let href-color = rgb("#3251A3")
@@ -218,4 +218,13 @@
         first-line-indent: 1.5em,
     )
     doc
+}
+
+#let start-appendix(body) = {
+    context {
+        let current-array = counter(heading).get()
+        counter(heading).update((current-array.at(0), 0))
+    }
+    set heading(numbering: "1.A.1.1")
+    body
 }

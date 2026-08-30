@@ -158,6 +158,8 @@ To build upon this point, A quantum process simulator solves the Schrödinger eq
 $ i * hbar (d psi) / (d t) = bold(H) psi $
 where $psi$ is the wavefunction and $bold(H)$ is the Hamiltonian operator. Solving this equation is simple for one or two qubits, but as the number of qubits increases, the Hamiltonian matrix grows to $2^N times 2^N$. This means that simulating a 50-qubit processor would require a classical computer larger than the Earth, which is very inconvenient.
 
+#show: start-appendix
+
 == Variational Autoencoders for State Compression
 
 
