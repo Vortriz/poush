@@ -34,12 +34,24 @@
     set enum(indent: 1.1em)
 
     let href-color = rgb("#3251A3")
-    show link: it => text(fill: href-color, it)
     show ref: it => {
         set text(fill: href-color, weight: "bold") if (
             it.element != none and it.element.func() == heading
         )
         it
+    }
+    show link: it => text(fill: href-color, it)
+    show link: it => {
+        let icon-path = "assets/external_link.svg"
+        if type(it.dest) == str and not repr(it.body).contains(icon-path) {
+            link(it.dest)[
+                #it.body#h(0.15em)#box(image(icon-path, height: 0.5em))#h(
+                    0.025em,
+                )
+            ]
+        } else {
+            it
+        }
     }
 
     // not to justify block headings
