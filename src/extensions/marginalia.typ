@@ -5,11 +5,14 @@
     side: "outer",
     flush-numbering: true,
     numbering: (..i) => super(
-        size: 5pt,
+        text[#numbering("1", ..i)#h(0.15em)],
+    ),
+    anchor-numbering: (..i) => super(
         numbering("1", ..i),
     ),
     text-style: (size: 8pt),
     par-style: (justify: false),
+    margin-align: "auto",
 )
 
 // asides (they don't need numbering)

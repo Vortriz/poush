@@ -130,6 +130,8 @@
                     ..styled-heading,
                 )
             }
+
+            counter("marginalia-note").update(0)
         }
     }
 
