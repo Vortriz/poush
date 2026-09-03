@@ -16,6 +16,7 @@
                 h(1fr)
                 counter(page).display()
             },
+            skip-starting: false,
         )
     } else {
         hydra(
