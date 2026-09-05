@@ -32,13 +32,19 @@
 
     set heading(numbering: "1.1.1.1")
     set enum(indent: 1.1em)
+    set math.equation(numbering: "(1)", supplement: none)
 
     let href-color = rgb("#3251A3")
     show ref: it => {
-        set text(fill: href-color, weight: "bold") if (
-            it.element != none and it.element.func() == heading
-        )
-        it
+        let el = it.element
+        if el != none {
+            if el.func() == heading {
+                text(fill: href-color, weight: "bold", it)
+            } else if el.func() == math.equation [
+                // [FIXME] need to get rid of this hardcoded "Equation" supplement
+                Equation (#link(el.location(), it))
+            ]
+        }
     }
     show link: it => text(fill: href-color, it)
     show link: it => {
