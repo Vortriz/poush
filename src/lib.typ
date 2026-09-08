@@ -44,6 +44,8 @@
                 // [FIXME] need to get rid of this hardcoded "Equation" supplement
                 Equation (#link(el.location(), it))
             ]
+        } else {
+            it
         }
     }
     show link: it => text(fill: href-color, it)
