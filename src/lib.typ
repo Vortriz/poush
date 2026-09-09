@@ -25,15 +25,6 @@
 
 
 #let thesis = doc => {
-    set text(
-        size: 11pt,
-        number-type: "old-style",
-    )
-
-    set heading(numbering: "1.1.1.1")
-    set enum(indent: 1.1em)
-    set math.equation(numbering: "(1)", supplement: none)
-
     let href-color = rgb("#3251A3")
     show ref: it => {
         let el = it.element
@@ -43,20 +34,29 @@
             } else if el.func() == math.equation [
                 // [FIXME] need to get rid of this hardcoded "Equation" supplement
                 Equation (#link(el.location(), it))
-            ]
+            ] else {
+                it
+            }
         } else {
             it
         }
     }
-    show link: it => text(fill: href-color, it)
     show link: it => {
+        set text(fill: href-color)
+
         let icon-path = "assets/external_link.svg"
         if type(it.dest) == str and not repr(it.body).contains(icon-path) {
-            link(it.dest)[
-                #it.body#h(0.15em)#box(image(icon-path, height: 0.5em))#h(
-                    0.025em,
-                )
-            ]
+            link(
+                it.dest,
+                {
+                    it.body
+                    box(
+                        image(icon-path),
+                        height: 0.5em,
+                        inset: (left: 0.15em),
+                    )
+                },
+            )
         } else {
             it
         }
@@ -75,7 +75,7 @@
         heading.where(level: 2),
         heading.where(level: 3),
         heading.where(level: 4),
-    ): it => block({
+    ): it => {
         if it.numbering != none {
             stack(
                 dir: ltr,
@@ -86,7 +86,7 @@
         } else {
             it.body
         }
-    })
+    }
 
     // no bookmarks for heading level > 3
     show selector.or(
@@ -95,7 +95,7 @@
         heading.where(level: 6),
     ): set heading(bookmarked: false)
 
-    // level 1 heading style (sections)
+    // level 1 heading style (chapters)
     show heading.where(level: 1): set heading(supplement: [Chapter])
     show heading.where(level: 1): set block(below: 2.75em)
     show heading.where(level: 1): it => {
@@ -157,13 +157,11 @@
 
     // level 2 headings are uppercased
     show heading.where(level: 2): set block(above: 2.5em, below: 1.5em)
-    show heading.where(level: 2): it => {
-        set text(
-            size: 12pt,
-            weight: "regular",
-        )
-        caps(it)
-    }
+    show heading.where(level: 2): it => text(
+        size: 12pt,
+        weight: "regular",
+        caps(it),
+    )
 
     // level 3 headings are slightly enlarged and italicized
     show heading.where(level: 3): set block(above: 2em, below: 1.25em)
@@ -187,16 +185,11 @@
         block(below: 0em) + box(inset: (right: 0.8em), it.body)
     )
 
-    // Caption formatting
-    show figure: it => {
-        // Tables have captions on top
-        if it.kind == "i-figured-table" {
-            set figure.caption(position: top)
-            it
-        } else {
-            it
-        }
-    }
+    // Tables have captions on top
+    show figure.where(kind: "i-figured-table"): set figure.caption(
+        position: top,
+    )
+
     show figure.caption: it => {
         set text(size: 9pt)
         set par(justify: true)
@@ -223,20 +216,31 @@
     )
 
     set page(
-        header: {
-            show: wideblock.with(side: "both")
-            header
-        },
+        header: wideblock(side: "both", header),
         footer: footer,
         footer-descent: 1em,
     )
-    show smallcaps: it => text(tracking: 0.05em, it)
+
+    set heading(numbering: "1.1.1.1")
+
+    set text(
+        size: 11pt,
+        number-type: "old-style",
+    )
+
     set par(
         justify: true,
         leading: 0.56em,
         spacing: 1.1em,
         first-line-indent: 1.5em,
     )
+
+    set math.equation(numbering: "(1)", supplement: none)
+
+    show smallcaps: set text(tracking: 0.05em)
+
+    set enum(indent: 1.1em)
+
     doc
 }
 
