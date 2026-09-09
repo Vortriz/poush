@@ -58,7 +58,7 @@
 )
 
 // normal figures will have captions in the margin with bottom-aligned captions
-#let normal-figure(..kwargs) = {
+#let normal-figure(position: top, ..kwargs) = {
     set figure(gap: 0pt)
     set figure.caption(position: bottom)
     show figure.caption.where(position: bottom): note.with(
@@ -68,7 +68,7 @@
         keep-order: true,
     )
     place(
-        top,
+        position,
         float: true,
         clearance: 3em,
         figure(..kwargs),
@@ -76,8 +76,8 @@
 }
 
 // wide figures will span into the margin, and their captions will be at the normal position (below the figure)
-#let wide-figure(..kwargs) = place(
-    top,
+#let wide-figure(position: top, ..kwargs) = place(
+    position,
     float: true,
     clearance: 3em,
     wideblock(figure(..kwargs)),
