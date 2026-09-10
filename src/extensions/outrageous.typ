@@ -1,4 +1,4 @@
-#import "../deps.typ": i-figured, outrageous
+#import "../deps.typ": outrageous
 #import "../utils.typ": caps
 #import "../sections/centered.typ": centered-section
 
@@ -76,7 +76,7 @@
         .or(heading.where(outlined: true))
 
     if kind != none {
-        i-figured.outline(title: title, target-kind: kind)
+        outline(title: title, target: figure.where(kind: kind))
     } else {
         // title is ignored if kind is none
         // because we want typst to automatically set it based on text language

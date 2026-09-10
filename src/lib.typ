@@ -1,5 +1,5 @@
 // deps
-#import "deps.typ": hydra
+#import "deps.typ": hydra, subpar
 
 // sections
 #import "sections/titlepage.typ": titlepage
@@ -16,7 +16,7 @@
 
 // extensions
 #import "extensions/glossary.typ": acr-theme
-#import "extensions/outrageous.typ": create-outline, i-figured, outline-presets
+#import "extensions/outrageous.typ": create-outline, outline-presets
 #import "extensions/marginalia.typ": (
     aside, marginalia, marginalia-quote, normal-figure, sideimage, sidenote,
     wide-figure, wideblock,
@@ -24,19 +24,29 @@
 #import "extensions/tblr.typ": booktbl, tabular
 
 
+#let sub-figure-numbering = (super, sub) => numbering(
+    "1.1a",
+    counter(heading).get().first(),
+    super,
+    sub,
+)
+#let figure-numbering = super => numbering(
+    "1.1",
+    counter(heading).get().first(),
+    super,
+)
+#let equation-numbering = super => numbering(
+    "(1.1)",
+    counter(heading).get().first(),
+    super,
+)
+
 #let thesis = doc => {
     let href-color = rgb("#3251A3")
     show ref: it => {
         let el = it.element
-        if el != none {
-            if el.func() == heading {
-                text(fill: href-color, weight: "bold", it)
-            } else if el.func() == math.equation [
-                // [FIXME] need to get rid of this hardcoded "Equation" supplement
-                Equation (#link(el.location(), it))
-            ] else {
-                it
-            }
+        if el != none and el.func() == heading {
+            text(fill: href-color, weight: "bold", it)
         } else {
             it
         }
@@ -151,6 +161,15 @@
                 )
             }
 
+            let figures = (image, table, raw).map(
+                kind => figure.where(kind: kind),
+            )
+            let counters = (..figures, math.equation).map(counter)
+
+            for c in counters {
+                c.update(0)
+            }
+
             counter("marginalia-note").update(0)
         }
     }
@@ -186,9 +205,7 @@
     )
 
     // Tables have captions on top
-    show figure.where(kind: "i-figured-table"): set figure.caption(
-        position: top,
-    )
+    show figure.where(kind: table): set figure.caption(position: top)
 
     show figure.caption: it => {
         set text(size: 9pt)
@@ -201,10 +218,6 @@
         }
         strong(prefix-text) + [: ] + it.body
     }
-
-    // apply the show rules (these can be customized)
-    show heading: i-figured.reset-counters
-    show figure: i-figured.show-figure
 
     // marginalia setup
     show: marginalia.setup.with(
@@ -235,7 +248,8 @@
         first-line-indent: 1.5em,
     )
 
-    set math.equation(numbering: "(1)", supplement: none)
+    set figure(numbering: figure-numbering)
+    set math.equation(numbering: equation-numbering)
 
     show smallcaps: set text(tracking: 0.05em)
 
@@ -252,3 +266,8 @@
     set heading(numbering: "1.A.1.1")
     body
 }
+
+#let multifigure = subpar.grid.with(
+    numbering: figure-numbering,
+    numbering-sub-ref: sub-figure-numbering,
+)
