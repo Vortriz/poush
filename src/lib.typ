@@ -41,18 +41,23 @@
     super,
 )
 
+#let link-color = rgb("#3251A3")
+
 #let thesis = doc => {
-    let href-color = rgb("#3251A3")
     show ref: it => {
         let el = it.element
         if el != none and el.func() == heading {
-            text(fill: href-color, weight: "bold", it)
+            text(fill: link-color, weight: "bold", it)
+        } else if (
+            el != none and (el.func() == figure or el.func() == math.equation)
+        ) {
+            text(fill: link-color, it)
         } else {
             it
         }
     }
     show link: it => {
-        set text(fill: href-color)
+        set text(fill: link-color)
 
         let icon-path = "assets/external_link.svg"
         if type(it.dest) == str and not repr(it.body).contains(icon-path) {
@@ -260,6 +265,11 @@
 }
 
 #let multifigure = subpar.grid.with(
-    numbering: figure-numbering,
     numbering-sub-ref: sub-figure-numbering,
+    align: top,
+    show-sub-caption: (num, caption) => [
+        #set text(size: 9pt)
+        #strong(num) #caption.body
+    ],
+    numbering: figure-numbering,
 )
