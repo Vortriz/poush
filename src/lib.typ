@@ -72,20 +72,16 @@
         }
     }
 
+    // helper function to select headings by level
+    let headings(start, stop) = selector.or(
+        ..range(start, stop, inclusive: true).map(l => heading.where(level: l)),
+    )
+
     // not to justify block headings
-    show selector.or(
-        heading.where(level: 1),
-        heading.where(level: 2),
-        heading.where(level: 3),
-        heading.where(level: 4),
-    ): set par(justify: false)
+    show headings(1, 4): set par(justify: false)
 
     // spacing between heading numbering and body
-    show selector.or(
-        heading.where(level: 2),
-        heading.where(level: 3),
-        heading.where(level: 4),
-    ): it => {
+    show headings(2, 4): it => {
         if it.numbering != none {
             stack(
                 dir: ltr,
@@ -99,11 +95,7 @@
     }
 
     // no bookmarks for heading level > 3
-    show selector.or(
-        heading.where(level: 4),
-        heading.where(level: 5),
-        heading.where(level: 6),
-    ): set heading(bookmarked: false)
+    show headings(4, 6): set heading(bookmarked: false)
 
     // level 1 heading style (chapters)
     show heading.where(level: 1): set heading(supplement: [Chapter])
@@ -212,11 +204,11 @@
         set par(justify: true)
         set align(left)
 
-        let prefix-text = context {
-            let num = it.counter.get()
-            [#it.supplement #numbering(it.numbering, ..num)]
-        }
-        strong(prefix-text) + [: ] + it.body
+        context (
+            strong[#it.supplement #it.counter.display(it.numbering)]
+                + [: ]
+                + it.body
+        )
     }
 
     // marginalia setup
