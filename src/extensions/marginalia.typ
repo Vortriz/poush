@@ -58,10 +58,10 @@
 )
 
 // normal figures will have captions in the margin with bottom-aligned captions
-#let normal-figure(position: top, label: none, ..kwargs) = {
-    set figure(gap: 0pt)
-    set figure.caption(position: bottom)
-    show figure.caption.where(position: bottom): note.with(
+#let normal-figure(position: top, label: none, figure) = {
+    set std.figure(gap: 0pt)
+    set std.figure.caption(position: bottom)
+    show std.figure.caption.where(position: bottom): note.with(
         alignment: "bottom",
         counter: none,
         shift: "avoid",
@@ -72,23 +72,23 @@
         float: true,
         clearance: 3em,
         [
-            #figure(..kwargs)
+            #figure
             #if label != none {
-                std.label(label)
+                label
             }
         ],
     )
 }
 
 // wide figures will span into the margin, and their captions will be at the normal position (below the figure)
-#let wide-figure(position: top, label: none, ..kwargs) = place(
+#let wide-figure(position: top, label: none, figure) = place(
     position,
     float: true,
     clearance: 3em,
     wideblock[
-        #figure(..kwargs)
+        #figure
         #if label != none {
-            std.label(label)
+            label
         }
     ],
 )
