@@ -6,7 +6,7 @@
 
         set outline.entry(
             fill: pad(
-                x: 0.5em,
+                x: 1em,
                 repeat(
                     gap: 0.5em,
                     [.],
@@ -30,20 +30,21 @@
                 it.indented(
                     it.prefix(),
                     gap: 1em,
-                    [
-                        #if it.body().func() == metadata [
-                            #v(1em)
-                            #let val = it.body().value
-                            #set text(size: 9pt)
-                            #box(width: 2em, val.num)
-                            #smallcaps(upper(val.title))
-                        ] else {
+                    {
+                        if it.body().func() == metadata {
+                            v(1em)
+                            let val = it.body().value
+                            set text(size: 9pt)
+                            box(width: 2em, val.num)
+                            smallcaps(upper(val.title))
+                        } else {
                             it.body()
                         }
-                        #set text(fill: black)
-                        #box(width: 1fr, it.fill)
-                        #it.page()
-                    ],
+
+                        set text(fill: black)
+                        box(width: 1fr, it.fill)
+                        it.page()
+                    },
                 ),
             )
         }
