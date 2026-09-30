@@ -6,6 +6,7 @@
 #import "sections/centered.typ": centered-page, centered-section
 #import "sections/colophon.typ": colophon
 #import "sections/part.typ": create-part
+#import "sections/outlines.typ": outlines
 
 // elements
 #import "elements/epigraph.typ": epigraph
@@ -16,7 +17,6 @@
 
 // extensions
 #import "extensions/glossary.typ": acr-theme
-#import "extensions/outrageous.typ": create-outline, outline-presets
 #import "extensions/marginalia.typ": (
     aside, marginalia, marginalia-quote, normal-figure, sideimage, sidenote,
     wide-figure, wideblock,
@@ -43,7 +43,7 @@
 
 #let link-color = rgb("#3251A3")
 
-#let thesis = doc => {
+#let thesis(figure-kinds: (image, table, raw), doc) = {
     show ref: it => {
         let el = it.element
         if el != none and el.func() == heading {
@@ -78,15 +78,15 @@
     }
 
     // helper function to select headings by level
-    let headings(start, stop) = selector.or(
+    let heading-range(start, stop) = selector.or(
         ..range(start, stop, inclusive: true).map(l => heading.where(level: l)),
     )
 
     // not to justify block headings
-    show headings(1, 4): set par(justify: false)
+    show heading-range(1, 4): set par(justify: false)
 
     // spacing between heading numbering and body
-    show headings(2, 4): it => {
+    show heading-range(2, 4): it => {
         if it.numbering != none {
             stack(
                 dir: ltr,
@@ -100,7 +100,7 @@
     }
 
     // no bookmarks for heading level > 3
-    show headings(4, 6): set heading(bookmarked: false)
+    show heading-range(4, 6): set heading(bookmarked: false)
 
     // level 1 heading style (chapters)
     show heading.where(level: 1): set heading(supplement: [Chapter])
@@ -158,10 +158,12 @@
                 )
             }
 
-            let figures = (image, table, raw).map(
-                kind => figure.where(kind: kind),
-            )
-            let counters = (..figures, math.equation).map(counter)
+            let counters = (
+                ..figure-kinds.map(
+                    kind => figure.where(kind: kind),
+                ),
+                math.equation,
+            ).map(counter)
 
             for c in counters {
                 c.update(0)
@@ -215,6 +217,8 @@
                 + it.body
         )
     }
+
+    show: outlines.with(figure-kinds)
 
     // marginalia setup
     show: marginalia.setup.with(
