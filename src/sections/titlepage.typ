@@ -1,4 +1,4 @@
-#import "../utils.typ": caps, centered-section
+#import "../utils.typ": centered-section, spaced-upper
 
 #let titlepage(
     // Title of the thesis.
@@ -34,7 +34,7 @@
         leading: 1.5em,
         text(
             size: 1.3em,
-            caps(title),
+            spaced-upper(title),
         ),
     )
 

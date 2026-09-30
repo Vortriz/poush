@@ -1,6 +1,6 @@
 #import "../utils.typ": centered-section
 
-#let outlines(figure-kinds, body) = {
+#let _outlines-style(figure-kinds, doc) = {
     show outline: it => centered-section({
         set heading(outlined: true)
 
@@ -76,5 +76,5 @@
         it
     }
 
-    body
+    doc
 }

@@ -14,7 +14,7 @@
     }
 }
 
-#let part-style = val => centered-page[
+#let _part-style = val => centered-page[
     #set page(footer: none)
     #set align(center + horizon)
     #set text(weight: "regular", bottom-edge: "descender")

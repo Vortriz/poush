@@ -1,6 +1,6 @@
-#import "../utils.typ": caps
+#import "../utils.typ": spaced-upper
 
-#let glossary-theme = (
+#let abbreviations-theme = (
     // Main section
     section: (title, body) => {
         heading(level: 1, numbering: none, title)
@@ -15,7 +15,7 @@
         // index = group index, total = total groups
         show heading: it => block(above: 2.5em, below: 1.5em)[
             #set text(weight: "regular")
-            #caps(it)
+            #spaced-upper(it)
         ]
         if name != "" {
             heading(level: 2, numbering: none, name)
