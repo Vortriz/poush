@@ -2,7 +2,7 @@
 
 #let section_counter = counter("section_counter")
 
-#let part(title) = {
+#let part = title => {
     section_counter.step()
 
     context {
@@ -14,7 +14,7 @@
     }
 }
 
-#let part-style(val) = centered-page[
+#let part-style = val => centered-page[
     #set page(footer: none)
     #set align(center + horizon)
     #set text(weight: "regular", bottom-edge: "descender")
