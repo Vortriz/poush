@@ -1,5 +1,4 @@
-#import "../utils.typ": caps
-#import "centered.typ": centered-section
+#import "../utils.typ": caps, centered-section
 
 #let titlepage(
     // Title of the thesis.

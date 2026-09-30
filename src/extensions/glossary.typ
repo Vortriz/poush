@@ -1,6 +1,6 @@
 #import "../utils.typ": caps
 
-#let acr-theme = (
+#let glossary-theme = (
     // Main section
     section: (title, body) => {
         heading(level: 1, numbering: none, title)

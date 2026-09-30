@@ -1,4 +1,4 @@
-#import "centered.typ": centered-section
+#import "../utils.typ": centered-section
 
 #let colophon(body) = centered-section({
     set text(size: 10pt)

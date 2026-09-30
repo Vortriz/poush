@@ -1,4 +1,4 @@
-#import "centered.typ": centered-section
+#import "../utils.typ": centered-section
 
 #let outlines(figure-kinds, body) = {
     show outline: it => centered-section({

@@ -3,7 +3,6 @@
 
 // sections
 #import "sections/titlepage.typ": titlepage
-#import "sections/centered.typ": centered-page, centered-section
 #import "sections/colophon.typ": colophon
 #import "sections/part.typ": create-part
 #import "sections/outlines.typ": outlines
@@ -13,10 +12,10 @@
 #import "elements/block-quote.typ": block-quote
 
 // utils
-#import "utils.typ": caps, footer, header
+#import "utils.typ": caps, centered-page, centered-section, footer, header
 
 // extensions
-#import "extensions/glossary.typ": acr-theme
+#import "extensions/glossary.typ": glossary-theme
 #import "extensions/marginalia.typ": (
     aside, marginalia, marginalia-quote, normal-figure, sideimage, sidenote,
     wide-figure, wideblock,
@@ -259,7 +258,7 @@
     doc
 }
 
-#let start-appendix(body) = {
+#let start-appendix = body => {
     context {
         let current-array = counter(heading).get()
         counter(heading).update((current-array.at(0), 0))
