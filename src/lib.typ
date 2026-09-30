@@ -4,7 +4,7 @@
 // sections
 #import "sections/titlepage.typ": titlepage
 #import "sections/colophon.typ": colophon
-#import "sections/part.typ": create-part
+#import "sections/part.typ": part, part-style
 #import "sections/outlines.typ": outlines
 
 // elements
@@ -111,27 +111,7 @@
         }
 
         if it.body.func() == metadata {
-            let val = it.body.value
-            centered-page[
-                #set page(footer: none)
-                #set align(center + horizon)
-                #set stack(spacing: 0.75em)
-                #show: smallcaps
-
-                #stack(
-                    upper(
-                        text(size: 9pt, tracking: 0.1em, weight: "bold")[
-                            Part #val.num.slice(0, -1)
-                        ],
-                    ),
-                    line(length: 10%, stroke: 0.025em),
-                    upper(
-                        text(size: 14pt, tracking: 0.1em, weight: "regular")[
-                            #val.title
-                        ],
-                    ),
-                )
-            ]
+            show: part-style(it.body.value)
         } else {
             set align(center)
             set line(length: 100%, stroke: 0.5pt)
@@ -253,7 +233,7 @@
 
     show smallcaps: set text(tracking: 0.05em)
 
-    set enum(indent: 1.1em)
+    show bibliography: centered-section
 
     doc
 }
