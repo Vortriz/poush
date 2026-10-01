@@ -1,51 +1,52 @@
-// deps
-#import "deps.typ": hydra, subpar
-
-// sections
-#import "sections/titlepage.typ": titlepage
-#import "sections/colophon.typ": colophon
-#import "sections/part.typ": part
-#import "sections/outlines.typ": _outlines-style
-
-// elements
-#import "elements/epigraph.typ": epigraph
-#import "elements/block-quote.typ": block-quote
-
-// misc
-#import "headings.typ": _headings-style
+#import "deps.typ": hydra
+#import "globals.typ": (
+    equation-numbering, figure-numbering, link-color, sub-figure-numbering,
+)
 #import "utils.typ": (
     centered-page, centered-section, footer, header, spaced-upper,
 )
 
-// extensions
+#import "core/colophon.typ": colophon
+#import "core/figures.typ": _figures-style
+#import "core/headings.typ": _headings-style
+#import "core/outlines.typ": _outlines-style
+#import "core/part.typ": part
+#import "core/titlepage.typ": titlepage
+
+#import "elements/block-quote.typ": block-quote
+#import "elements/epigraph.typ": epigraph
+
 #import "extensions/glossary.typ": abbreviations-theme
 #import "extensions/marginalia.typ": (
     aside, marginalia, marginalia-quote, normal-figure, sideimage, sidenote,
     wide-figure, wideblock,
 )
+#import "extensions/subpar.typ": multifigure, subpar
 #import "extensions/tblr.typ": booktbl, tabular
 
 
-#let sub-figure-numbering = (super, sub) => numbering(
-    "1.1a",
-    counter(heading).get().first(),
-    super,
-    sub,
-)
-#let figure-numbering = super => numbering(
-    "1.1",
-    counter(heading).get().first(),
-    super,
-)
-#let equation-numbering = super => numbering(
-    "(1.1)",
-    counter(heading).get().first(),
-    super,
-)
-
-#let link-color = rgb("#3251A3")
-
 #let thesis(figure-kinds: (image, table, raw), doc) = {
+    set page(
+        paper: "us-letter",
+        header: wideblock(side: "both", header),
+        footer: footer,
+        footer-descent: 1em,
+    )
+
+    show: marginalia.setup.with(
+        book: true,
+        top: 4cm,
+        bottom: 2.88cm,
+        inner: (far: 2.75cm, width: 0cm, sep: 0cm),
+        outer: (far: 2.25cm, width: 4.7cm, sep: 0.8cm),
+    )
+
+    show: _outlines-style.with(figure-kinds)
+
+    show: _headings-style.with(figure-kinds)
+
+    show: _figures-style
+
     show ref: it => {
         let el = it.element
         if el != none and el.func() == heading {
@@ -58,6 +59,7 @@
             it
         }
     }
+
     show link: it => {
         set text(fill: link-color)
 
@@ -79,41 +81,7 @@
         }
     }
 
-    show: _headings-style.with(figure-kinds)
-
-    // Tables have captions on top
-    show figure.where(kind: table): set figure.caption(position: top)
-
-    show figure.caption: it => {
-        set text(size: 9pt)
-        set par(justify: true)
-        set align(left)
-
-        context (
-            strong[#it.supplement #it.counter.display(it.numbering)]
-                + [: ]
-                + it.body
-        )
-    }
-
-    show: _outlines-style.with(figure-kinds)
-
-    // marginalia setup
-    show: marginalia.setup.with(
-        book: true,
-        top: 4cm,
-        bottom: 2.88cm,
-        inner: (far: 2.75cm, width: 0cm, sep: 0cm),
-        outer: (far: 2.25cm, width: 4.7cm, sep: 0.8cm),
-    )
-
-    set page(
-        header: wideblock(side: "both", header),
-        footer: footer,
-        footer-descent: 1em,
-    )
-
-    set heading(numbering: "1.1.1.1")
+    show smallcaps: set text(tracking: 0.05em)
 
     set text(
         size: 11pt,
@@ -127,10 +95,7 @@
         first-line-indent: 1.5em,
     )
 
-    set figure(numbering: figure-numbering)
     set math.equation(numbering: equation-numbering)
-
-    show smallcaps: set text(tracking: 0.05em)
 
     show bibliography: centered-section
 
@@ -146,12 +111,21 @@
     body
 }
 
-#let multifigure = subpar.grid.with(
-    numbering: figure-numbering,
-    numbering-sub-ref: sub-figure-numbering,
-    align: top,
-    show-sub-caption: (num, caption) => [
-        #set text(size: 9pt)
-        #strong(num) #caption.body
-    ],
-)
+#let front-matter = body => {
+    set page(numbering: "i")
+
+    body
+}
+
+#let main-matter = body => {
+    set page(numbering: "1")
+    counter(page).update(1)
+
+    body
+}
+
+#let back-matter = body => {
+    set heading(numbering: none)
+
+    body
+}

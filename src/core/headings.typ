@@ -1,5 +1,5 @@
-#import "sections/part.typ": _part-style
-#import "utils.typ": spaced-upper
+#import "part.typ": _part-style
+#import "../utils.typ": spaced-upper
 
 #let _headings-style(figure-kinds, doc) = {
     // helper function to select headings by level
@@ -107,6 +107,8 @@
     show heading.where(level: 5): it => (
         block(below: 0em) + box(inset: (right: 0.8em), it.body)
     )
+
+    set heading(numbering: "1.1.1.1")
 
     doc
 }
