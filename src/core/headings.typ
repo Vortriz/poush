@@ -31,10 +31,7 @@
     show heading.where(level: 1): set heading(supplement: [Chapter])
     show heading.where(level: 1): set block(below: 2.75em)
     show heading.where(level: 1): it => {
-        {
-            set page(header: none)
-            pagebreak(weak: true, to: "odd")
-        }
+        pagebreak(weak: true, to: "odd")
 
         if it.body.func() == metadata {
             show: _part-style(it.body.value)
@@ -107,8 +104,6 @@
     show heading.where(level: 5): it => (
         block(below: 0em) + box(inset: (right: 0.8em), it.body)
     )
-
-    set heading(numbering: "1.1.1.1")
 
     doc
 }

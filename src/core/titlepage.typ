@@ -1,4 +1,4 @@
-#import "../utils.typ": centered-section, spaced-upper
+#import "../utils.typ": spaced-upper
 
 #let titlepage(
     // Title of the thesis.
@@ -24,7 +24,7 @@
     ),
     // The name of your institution.
     institution: none,
-) = centered-section({
+) = {
     set align(center)
     show smallcaps: it => text(size: 1.1em, it)
 
@@ -70,4 +70,6 @@
     if institution != none [
         #smallcaps(institution)
     ]
-})
+
+    pagebreak(weak: true, to: "odd")
+}

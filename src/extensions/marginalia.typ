@@ -1,4 +1,5 @@
 #import "../deps.typ": marginalia, note, notefigure, wideblock
+#import "../utils.typ": header
 
 // regular margin note
 #let sidenote = note.with(
@@ -91,4 +92,15 @@
             label
         }
     ],
+)
+
+#let widepage(..args, body) = page(
+    ..args,
+    {
+        set align(center + horizon)
+        wideblock(
+            side: "both",
+            body,
+        )
+    },
 )

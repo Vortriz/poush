@@ -1,7 +1,5 @@
-#import "../utils.typ": centered-section
-
 #let _outlines-style(figure-kinds, doc) = {
-    show outline: it => centered-section({
+    show outline: it => {
         set heading(outlined: true)
 
         set outline.entry(
@@ -15,7 +13,7 @@
         )
 
         it
-    })
+    }
 
     show selector.or(
         outline.where(target: selector(heading)),
